@@ -1,0 +1,16 @@
+City,Temperature_C,Humidity_Percent,Wind_kmh,Condition
+Mumbai,32,78,12,Sunny
+London,15,65,20,Cloudy
+Dubai,42,35,18,Sunny
+Tokyo,22,60,10,Clear
+Moscow,-5,80,15,Snowy
+Sydney,28,55,14,Sunny
+Cairo,38,25,22,Sunny
+New York,5,70,30,Windy
+Singapore,30,85,8,Rainy
+Paris,12,72,16,Cloudy
+Beijing,25,45,12,Hazy
+Berlin,8,68,20,Cloudy
+Bangkok,35,78,6,Sunny
+Rio de Janeiro,30,75,10,Rainy
+Reykjavik,2,80,25,Cloudy

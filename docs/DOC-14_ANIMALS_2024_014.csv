@@ -1,0 +1,16 @@
+Animal,Type,Speed_kmh,Lifespan_years,Weight_kg
+Cheetah,Mammal,120,12,72
+Peregrine Falcon,Bird,390,15,1
+Blue Whale,Mammal,50,85,150000
+Elephant,Mammal,40,65,6000
+Kangaroo,Mammal,70,12,85
+Horse,Mammal,71,28,700
+Lion,Mammal,80,14,190
+Rabbit,Mammal,55,9,2.5
+Dolphin,Mammal,60,25,300
+Turtle,Reptile,5,150,200
+Eagle,Bird,160,30,6.3
+Shark,Fish,56,30,1100
+Hawk,Bird,120,22,1.5
+Penguin,Bird,8,20,23
+Snake,Reptile,8,20,2.5

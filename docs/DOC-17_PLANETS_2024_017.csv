@@ -1,0 +1,9 @@
+Planet,Distance_Sun_Mkm,Diameter_km,Day_hours,Year_days,Moons
+Mercury,57.9,4879,1408,88,0
+Venus,108.2,12104,5832,225,0
+Earth,149.6,12756,24,365,1
+Mars,227.9,6792,24.6,687,2
+Jupiter,778.5,142984,9.9,4333,95
+Saturn,1434,120536,10.7,10759,146
+Uranus,2871,51118,17.2,30687,27
+Neptune,4495,49528,16.1,60190,16

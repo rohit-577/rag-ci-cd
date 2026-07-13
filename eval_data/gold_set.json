@@ -1,0 +1,26 @@
+[
+  {
+    "query": "What is the stability metric for SYS_LOG_466?",
+    "relevant_ids": [],
+    "expected_terms": ["0.543877"],
+    "description": "Simple factual extraction from CSV log data"
+  },
+  {
+    "query": "Auto-scaling cluster raft consensus availability zones",
+    "relevant_ids": [],
+    "expected_terms": ["auto-scaling", "raft consensus"],
+    "description": "Lexical match test for ARCH_NOTE content"
+  },
+  {
+    "query": "HNSW indexing algorithm",
+    "relevant_ids": [],
+    "expected_terms": ["HNSW", "Hierarchical Navigable Small World"],
+    "description": "Technical term retrieval test"
+  },
+  {
+    "query": "SYSTEM MEMORY BLOB",
+    "relevant_ids": [],
+    "expected_terms": ["SYSTEM MEMORY BLOB"],
+    "description": "TXT document header retrieval"
+  }
+]
