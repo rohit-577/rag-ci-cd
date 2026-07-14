@@ -1,100 +1,111 @@
 # Financial Document RAG System
 
-Production-grade retrieval-augmented generation system for financial documents: PDFs, CSVs, and TXT files. Built for correctness, retrieval quality, source grounding, and testability.
+Multi-stage retrieval-augmented generation pipeline for querying PDFs, CSVs, and TXT files — with automated CI/CD, Docker packaging, and a full test suite.
 
-## Architecture
+## How It Works
 
 ```
-docs/  →  Ingestion  →  Chunking  →  Indexing  →  Retrieval  →  Reranking  →  Generation
-                                                (dense+BM25)  (cross-encoder)  (local LLM)
+Query
+  │
+  ▼
+┌──────────────┐     ┌────────────────┐     ┌───────────┐     ┌────────────┐
+│   Routing    │────▶│   Retrieval    │────▶│ Reranking │────▶│ Generation │
+│ simple/complex│     │ dense + BM25   │     │cross-encod│     │ Ollama LLM │
+└──────────────┘     └────────────────┘     └───────────┘     └────────────┘
+                          │                                        │
+                     BGE-M3 embeds                          citations + confidence
 ```
 
-- **Ingestion**: Layout-aware parsers for PDF (pypdf), CSV (dict-based), and TXT (paragraph-based)
-- **Chunking**: Structure-aware contextual chunking with section titles, page numbers, table headers, document metadata
-- **Indexing**: Persistent index (JSON) with BM25 lexical index + dense embeddings (BGE-M3)
-- **Retrieval**: Hybrid dense + BM25 with Reciprocal Rank Fusion (RRF) and deduplication
-- **Reranking**: Cross-encoder reranker (`cross-encoder/ms-marco-MiniLM-L-6-v2`)
-- **Routing**: Rule-based query classifier (simple vs complex) for model and depth selection
-- **Generation**: Grounded answer generation via local LLM (qwen3:14b / llama3.2:3b) with forced citations
-- **Evaluation**: Local harness with retrieval recall, grounding, confidence, and citation metrics
+| Stage | What it does |
+|-------|-------------|
+| **Routing** | Classifies query as `simple` (10 chunks, fast model) or `complex` (30 chunks, capable model) |
+| **Retrieval** | Searches index using dense embeddings (BGE-M3) + BM25 lexical match, fused via Reciprocal Rank Fusion |
+| **Reranking** | Cross-encoder re-scores top chunks for precision |
+| **Generation** | Local Ollama LLM generates grounded answer with source citations and confidence score |
 
-## Setup
+## Quick Start
 
-```bash
-python3 -m venv .venv
-source .venv/bin/activate
-python3 -m pip install -e .
-```
+### Prerequisites
 
-Requires:
 - Python 3.12+
-- Ollama with `qwen3:14b`, `llama3.2:3b` models
-- CUDA-capable GPU (recommended) or CPU
+- [Ollama](https://ollama.com) with models pulled:
+  ```bash
+  ollama pull llama3.2:3b
+  ollama pull qwen2.5:1.5b
+  ```
 
-## Usage
-
-### 1. Build the index
-
-```bash
-python3 -m rag_ci_cd.cli index
-```
-
-Processes all files in `docs/` (PDF, CSV, TXT), chunks them, generates embeddings, and saves the index.
-
-### 2. Start the API server
+### 1. Install
 
 ```bash
-python3 -m rag_ci_cd.cli serve
+git clone https://github.com/rohit-577/rag-ci-cd.git
+cd rag-ci-cd
+python -m venv .venv && source .venv/bin/activate
+pip install -e ".[dev]"
 ```
 
-FastAPI service at `http://localhost:6565`.
+### 2. Build the Index
 
-### 3. Query
+Processes all 30 documents in `docs/` (PDF, CSV, TXT), chunks them, generates embeddings, and saves the index.
+
+```bash
+make index
+```
+
+### 3. Start the API
+
+```bash
+make serve
+# API runs at http://localhost:6565
+```
+
+### 4. Query
 
 ```bash
 curl -X POST http://localhost:6565/query \
   -H "Content-Type: application/json" \
-  -d '{"query": "What stability metrics are in the documents?", "top_k": 10, "rerank": true}'
+  -d '{"query": "What is the capital of India?", "top_k": 10}'
 ```
 
-### 4. Run evaluation
+### 5. Run Tests
 
 ```bash
-python3 -m rag_ci_cd.cli eval
+make test              # 141 unit tests (~30s)
+make test-integration  # 20 end-to-end tests (requires Ollama, ~15min)
 ```
 
-### 5. Run tests
+### 6. Docker
 
 ```bash
-python3 -m pytest tests/ -v
+make docker-build
+make docker-run
 ```
 
 ## API Endpoints
 
 | Method | Path | Description |
 |--------|------|-------------|
-| GET | `/health` | Health check + indexed chunk count |
-| POST | `/query` | Ask a question about the documents |
-| GET | `/documents` | List indexed documents with chunk counts |
+| `GET` | `/health` | Health check + chunk count |
+| `POST` | `/query` | Ask a question about the documents |
+| `GET` | `/documents` | List all indexed documents |
 
-### POST /query
-
-Request:
+**POST /query request:**
 ```json
 {
-  "query": "What is the revenue trend?",
-  "top_k": 10,
+  "query": "Compare revenue trends across documents",
+  "top_k": 15,
   "rerank": true,
   "route": null
 }
 ```
 
-Response:
+**Response:**
 ```json
 {
-  "query": "What is the revenue trend?",
-  "answer": "...",
-  "citations": [{"chunk_id": "...", "filename": "...", "excerpt": "..."}],
+  "query": "Compare revenue trends across documents",
+  "answer": "According to the documents...",
+  "citations": [
+    {"chunk_id": "...", "filename": "DOC-1_ALBERT.txt", "excerpt": "..."}
+  ],
   "confidence": 0.9,
   "sufficiency": "sufficient",
   "route": "complex",
@@ -107,25 +118,87 @@ Response:
 
 ```
 rag_ci_cd/
-  models/           # Pydantic schemas
-  ingestion/        # PDF/CSV/TXT parsers
-  chunking/         # Contextual chunking
-  indexing/         # Persistent index store
-  embeddings/       # BGE-M3 embedding model
-  retrieval/        # Dense + BM25 + hybrid RRF
-  reranking/        # Cross-encoder reranker
-  routing/          # Query classifier
-  generation/       # LLM-based answer generation
-  evaluation/       # Metrics + evaluation harness
-  service/          # FastAPI application
-  cli.py            # CLI entry points
-tests/              # 74+ tests
+├── models/           # Pydantic schemas (Document, Chunk, Answer)
+├── ingestion/        # PDF/CSV/TXT parsers + factory
+├── chunking/         # Structure-aware contextual chunker
+├── embeddings/       # BGE-M3 embedding model
+├── indexing/         # Persistent JSON + numpy index store
+├── retrieval/        # Dense + BM25 + hybrid RRF fusion
+├── reranking/        # Cross-encoder reranker
+├── routing/          # Query classifier (simple/complex)
+├── generation/       # Ollama LLM with citation extraction
+├── evaluation/       # Metrics + evaluation harness
+├── service/          # FastAPI server
+├── cli.py            # CLI entry points
+└── __main__.py       # python -m rag_ci_cd
+
+tests/
+├── test_*.py         # 9 unit test files (141 tests)
+├── test_integration.py  # 20 gold-set integration tests
+└── gold_set.json     # End-to-end test questions
+
+docs/                 # 30 documents (10 TXT, 10 CSV, 10 PDF)
+.github/workflows/    # CI/CD pipeline
+Dockerfile            # Multi-stage Docker build
+Makefile              # Dev shortcuts
 ```
 
-## Key Design Decisions
+## CI/CD Pipeline
 
-- **Hybrid retrieval** (dense + BM25) with RRF fusion ensures both semantic understanding and exact term matching—critical for financial symbols, numbers, and dates.
-- **Cross-encoder reranking** adds a second stage that jointly scores query-document pairs, improving precision on top of bi-encoder retrieval.
-- **Contextual chunking** preserves document structure (page numbers, section titles, table headers) so each chunk carries its provenance.
-- **Query routing** saves cost/time on simple lookups while allocating full resources for complex, multi-document questions.
-- **Grounded generation** with confidence scoring and explicit abstention prevents hallucination of financial figures.
+Automated on every push/PR to `main`:
+
+```
+┌─────────┐     ┌──────────────┐     ┌─────────────────┐     ┌──────────────────┐
+│  Lint   │────▶│  Unit Tests  │────▶│ Integration Tests│────▶│ Docker Build+Push│
+│ ruff    │     │ 141 tests    │     │ 20 tests + Ollama│     │ GHCR             │
+└─────────┘     └──────────────┘     └─────────────────┘     └──────────────────┘
+    │                │                       │                         │
+  ~30s             ~30s                    ~25min                    ~3min
+ PRs only        PRs + push              push to main              push to main
+```
+
+| Job | Triggers | What it does |
+|-----|----------|-------------|
+| **Lint** | Every push/PR | `ruff check` + `ruff format --check` |
+| **Unit Tests** | Every push/PR | 141 tests (no Ollama needed) |
+| **Integration Tests** | Push to `main` only | Pulls Ollama models, builds index, runs all 167 tests |
+| **Docker Build+Push** | After integration passes | Builds multi-stage image, pushes to `ghcr.io` |
+
+### Make Targets
+
+| Command | Description |
+|---------|-------------|
+| `make lint` | Check code style |
+| `make format` | Auto-fix style |
+| `make test` | Run 141 unit tests |
+| `make test-integration` | Run all 167 tests |
+| `make index` | Build search index |
+| `make serve` | Start API on `:6565` |
+| `make eval` | Run evaluation harness |
+| `make docker-build` | Build Docker image |
+| `make docker-run` | Run container |
+
+## Test Suite
+
+**141 unit tests** covering every module:
+- Ingestion: PDF, CSV, TXT parsing + factory dispatch
+- Chunking: structure preservation, metadata, determinism
+- Retrieval: dense, lexical, hybrid RRF, index store
+- Reranking: cross-encoder scoring and ordering
+- Routing: query classification, model/depth config
+- Generation: citation extraction, confidence parsing
+- Evaluation: recall, grounding, metric computation
+- Service: FastAPI health, query, documents endpoints
+
+**20 integration tests** (gold set):
+- 10 easy (single-doc factual extraction)
+- 6 hard (multi-doc comparison, filtering, counting)
+- 4 extreme (corpus-level aggregation, max operations)
+- Auto-skips on Ollama timeout
+
+## Requirements
+
+- Python 3.12+
+- Ollama (`llama3.2:3b`, `qwen2.5:1.5b`)
+- CUDA GPU recommended (works on CPU, slower)
+- ~4GB disk for models + index
