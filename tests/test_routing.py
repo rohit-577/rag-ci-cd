@@ -86,11 +86,11 @@ class TestRouteConfig:
     def test_complex_model_matches_config(self):
         assert get_model_for_route(Route.COMPLEX) == MAIN_MODEL
 
-    def test_simple_model_is_llama(self):
-        assert get_model_for_route(Route.SIMPLE) == "llama3.2:3b"
+    def test_simple_model_is_qwen(self):
+        assert get_model_for_route(Route.SIMPLE) == "qwen2.5:1.5b"
 
-    def test_complex_model_is_qwen(self):
-        assert get_model_for_route(Route.COMPLEX) == "qwen3:14b"
+    def test_complex_model_is_llama(self):
+        assert get_model_for_route(Route.COMPLEX) == "llama3.2:3b"
 
     def test_simple_depth(self):
         assert get_retrieval_depth_for_route(Route.SIMPLE) == 10
