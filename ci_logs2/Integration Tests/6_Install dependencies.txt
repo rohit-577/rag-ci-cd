@@ -1,0 +1,139 @@
+﻿2026-07-14T10:55:08.8561453Z ##[group]Run uv sync --frozen
+2026-07-14T10:55:08.8561824Z [36;1muv sync --frozen[0m
+2026-07-14T10:55:08.8594117Z shell: /usr/bin/bash -e {0}
+2026-07-14T10:55:08.8594384Z env:
+2026-07-14T10:55:08.8594585Z   REGISTRY: ghcr.io
+2026-07-14T10:55:08.8594818Z   IMAGE_NAME: rohit-577/rag-ci-cd
+2026-07-14T10:55:08.8595137Z   UV_CACHE_DIR: /home/runner/work/_temp/setup-uv-cache
+2026-07-14T10:55:08.8595455Z ##[endgroup]
+2026-07-14T10:55:09.8297714Z Using CPython 3.12.13
+2026-07-14T10:55:09.8298628Z Creating virtual environment at: .venv
+2026-07-14T10:55:09.8351844Z warning: Skipping installation of entry points (`project.scripts`) for package `rag-ci-cd` because this project is not packaged; to install entry points, set `tool.uv.package = true` or define a `build-system`
+2026-07-14T10:55:09.9104805Z Downloading scipy (33.7MiB)
+2026-07-14T10:55:09.9105793Z Downloading numpy (15.9MiB)
+2026-07-14T10:55:09.9106292Z Downloading nvidia-cusparse (139.2MiB)
+2026-07-14T10:55:09.9106879Z Downloading nvidia-nvshmem-cu13 (57.6MiB)
+2026-07-14T10:55:09.9107940Z Downloading nvidia-cuda-cupti (10.2MiB)
+2026-07-14T10:55:09.9108500Z Downloading sympy (6.0MiB)
+2026-07-14T10:55:09.9108932Z Downloading tokenizers (3.1MiB)
+2026-07-14T10:55:09.9109432Z Downloading nvidia-cuda-runtime (2.1MiB)
+2026-07-14T10:55:09.9111284Z Downloading pydantic-core (2.0MiB)
+2026-07-14T10:55:09.9119281Z Downloading networkx (2.0MiB)
+2026-07-14T10:55:09.9487398Z Downloading nvidia-cusparselt-cu13 (162.3MiB)
+2026-07-14T10:55:09.9491956Z Downloading triton (188.6MiB)
+2026-07-14T10:55:09.9494329Z Downloading cuda-bindings (6.3MiB)
+2026-07-14T10:55:09.9496562Z Downloading nvidia-cuda-nvrtc (86.0MiB)
+2026-07-14T10:55:09.9498700Z Downloading nvidia-cublas (403.5MiB)
+2026-07-14T10:55:09.9500997Z Downloading nvidia-cusolver (191.6MiB)
+2026-07-14T10:55:09.9503121Z Downloading hf-xet (4.3MiB)
+2026-07-14T10:55:09.9505579Z Downloading scikit-learn (8.7MiB)
+2026-07-14T10:55:09.9507834Z Downloading nvidia-cudnn-cu13 (349.2MiB)
+2026-07-14T10:55:09.9510111Z Downloading nvidia-curand (56.8MiB)
+2026-07-14T10:55:09.9512459Z Downloading nvidia-cufile (1.2MiB)
+2026-07-14T10:55:09.9517664Z Downloading nvidia-cufft (204.2MiB)
+2026-07-14T10:55:09.9519941Z Downloading pygments (1.2MiB)
+2026-07-14T10:55:09.9522332Z Downloading nvidia-nccl-cu13 (196.4MiB)
+2026-07-14T10:55:09.9524874Z Downloading nvidia-nvjitlink (38.9MiB)
+2026-07-14T10:55:09.9527215Z Downloading torch (502.2MiB)
+2026-07-14T10:55:09.9529620Z Downloading transformers (11.0MiB)
+2026-07-14T10:55:11.5357199Z  Downloaded nvidia-cufile
+2026-07-14T10:55:12.1798493Z  Downloaded pydantic-core
+2026-07-14T10:55:12.2312089Z  Downloaded nvidia-cuda-runtime
+2026-07-14T10:55:12.5028452Z  Downloaded pygments
+2026-07-14T10:55:12.5330117Z  Downloaded tokenizers
+2026-07-14T10:55:13.1196706Z  Downloaded networkx
+2026-07-14T10:55:13.1886444Z  Downloaded hf-xet
+2026-07-14T10:55:13.6461151Z  Downloaded cuda-bindings
+2026-07-14T10:55:14.2007150Z  Downloaded nvidia-cuda-cupti
+2026-07-14T10:55:14.2733941Z  Downloaded scikit-learn
+2026-07-14T10:55:14.4396857Z  Downloaded sympy
+2026-07-14T10:55:15.0368355Z  Downloaded numpy
+2026-07-14T10:55:16.9824663Z  Downloaded scipy
+2026-07-14T10:55:16.9825344Z  Downloaded nvidia-nvjitlink
+2026-07-14T10:55:18.1981938Z  Downloaded nvidia-curand
+2026-07-14T10:55:18.2123950Z  Downloaded nvidia-nvshmem-cu13
+2026-07-14T10:55:18.7274603Z  Downloaded transformers
+2026-07-14T10:55:19.6788980Z  Downloaded nvidia-cuda-nvrtc
+2026-07-14T10:55:21.7938996Z  Downloaded nvidia-cusparse
+2026-07-14T10:55:22.4604581Z  Downloaded nvidia-cusparselt-cu13
+2026-07-14T10:55:23.2104102Z  Downloaded nvidia-cusolver
+2026-07-14T10:55:23.4200300Z  Downloaded nvidia-nccl-cu13
+2026-07-14T10:55:23.5132995Z  Downloaded nvidia-cufft
+2026-07-14T10:55:24.1569773Z  Downloaded triton
+2026-07-14T10:55:24.8813628Z  Downloaded nvidia-cudnn-cu13
+2026-07-14T10:55:24.9842039Z  Downloaded nvidia-cublas
+2026-07-14T10:55:28.7904883Z  Downloaded torch
+2026-07-14T10:55:28.7909139Z Prepared 72 packages in 18.95s
+2026-07-14T10:55:29.1001013Z Installed 72 packages in 308ms
+2026-07-14T10:55:29.1002177Z  + annotated-doc==0.0.4
+2026-07-14T10:55:29.1002725Z  + annotated-types==0.7.0
+2026-07-14T10:55:29.1003534Z  + anyio==4.14.1
+2026-07-14T10:55:29.1005659Z  + beautifulsoup4==4.15.0
+2026-07-14T10:55:29.1006197Z  + certifi==2026.6.17
+2026-07-14T10:55:29.1006675Z  + click==8.4.2
+2026-07-14T10:55:29.1007166Z  + cuda-bindings==13.3.1
+2026-07-14T10:55:29.1007700Z  + cuda-pathfinder==1.5.6
+2026-07-14T10:55:29.1008244Z  + cuda-toolkit==13.0.3.0
+2026-07-14T10:55:29.1008749Z  + fastapi==0.139.0
+2026-07-14T10:55:29.1009214Z  + filelock==3.29.7
+2026-07-14T10:55:29.1009662Z  + fsspec==2026.6.0
+2026-07-14T10:55:29.1010123Z  + h11==0.16.0
+2026-07-14T10:55:29.1010612Z  + hf-xet==1.5.1
+2026-07-14T10:55:29.1011019Z  + httpcore==1.0.9
+2026-07-14T10:55:29.1011425Z  + httpx==0.28.1
+2026-07-14T10:55:29.1011842Z  + huggingface-hub==1.23.0
+2026-07-14T10:55:29.1012306Z  + idna==3.18
+2026-07-14T10:55:29.1012704Z  + iniconfig==2.3.0
+2026-07-14T10:55:29.1013112Z  + jinja2==3.1.6
+2026-07-14T10:55:29.1013718Z  + joblib==1.5.3
+2026-07-14T10:55:29.1014401Z  + markdown-it-py==4.2.0
+2026-07-14T10:55:29.1014858Z  + markupsafe==3.0.3
+2026-07-14T10:55:29.1015281Z  + mdurl==0.1.2
+2026-07-14T10:55:29.1015672Z  + mpmath==1.3.0
+2026-07-14T10:55:29.1016072Z  + narwhals==2.23.0
+2026-07-14T10:55:29.1016473Z  + networkx==3.6.1
+2026-07-14T10:55:29.1016875Z  + numpy==2.5.1
+2026-07-14T10:55:29.1017290Z  + nvidia-cublas==13.1.1.3
+2026-07-14T10:55:29.1017777Z  + nvidia-cuda-cupti==13.0.85
+2026-07-14T10:55:29.1018281Z  + nvidia-cuda-nvrtc==13.0.88
+2026-07-14T10:55:29.1018794Z  + nvidia-cuda-runtime==13.0.96
+2026-07-14T10:55:29.1019301Z  + nvidia-cudnn-cu13==9.20.0.48
+2026-07-14T10:55:29.1019785Z  + nvidia-cufft==12.0.0.61
+2026-07-14T10:55:29.1020252Z  + nvidia-cufile==1.15.1.6
+2026-07-14T10:55:29.1020710Z  + nvidia-curand==10.4.0.35
+2026-07-14T10:55:29.1021182Z  + nvidia-cusolver==12.0.4.66
+2026-07-14T10:55:29.1021594Z  + nvidia-cusparse==12.6.3.3
+2026-07-14T10:55:29.1022026Z  + nvidia-cusparselt-cu13==0.8.1
+2026-07-14T10:55:29.1022474Z  + nvidia-nccl-cu13==2.29.7
+2026-07-14T10:55:29.1022897Z  + nvidia-nvjitlink==13.3.33
+2026-07-14T10:55:29.1023592Z  + nvidia-nvshmem-cu13==3.4.5
+2026-07-14T10:55:29.1023978Z  + nvidia-nvtx==13.0.85
+2026-07-14T10:55:29.1024306Z  + packaging==26.2
+2026-07-14T10:55:29.1024630Z  + pluggy==1.6.0
+2026-07-14T10:55:29.1024951Z  + pydantic==2.13.4
+2026-07-14T10:55:29.1025286Z  + pydantic-core==2.46.4
+2026-07-14T10:55:29.1025639Z  + pygments==2.20.0
+2026-07-14T10:55:29.1025949Z  + pypdf==6.14.2
+2026-07-14T10:55:29.1027569Z  + pytest==9.1.1
+2026-07-14T10:55:29.1027955Z  + pyyaml==6.0.3
+2026-07-14T10:55:29.1028341Z  + regex==2026.6.28
+2026-07-14T10:55:29.1028699Z  + rich==15.0.0
+2026-07-14T10:55:29.1029208Z  + safetensors==0.8.0
+2026-07-14T10:55:29.1029586Z  + scikit-learn==1.9.0
+2026-07-14T10:55:29.1029953Z  + scipy==1.18.0
+2026-07-14T10:55:29.1030329Z  + sentence-transformers==5.6.0
+2026-07-14T10:55:29.1030752Z  + setuptools==83.0.0
+2026-07-14T10:55:29.1031122Z  + shellingham==1.5.4
+2026-07-14T10:55:29.1031483Z  + soupsieve==2.8.4
+2026-07-14T10:55:29.1031848Z  + starlette==1.3.1
+2026-07-14T10:55:29.1032185Z  + sympy==1.14.0
+2026-07-14T10:55:29.1032534Z  + threadpoolctl==3.6.0
+2026-07-14T10:55:29.1032911Z  + tokenizers==0.22.2
+2026-07-14T10:55:29.1033846Z  + torch==2.13.0
+2026-07-14T10:55:29.1034232Z  + tqdm==4.68.4
+2026-07-14T10:55:29.1034580Z  + transformers==5.13.0
+2026-07-14T10:55:29.1034949Z  + triton==3.7.1
+2026-07-14T10:55:29.1035278Z  + typer==0.26.8
+2026-07-14T10:55:29.1035641Z  + typing-extensions==4.16.0
+2026-07-14T10:55:29.1036030Z  + typing-inspection==0.4.2
+2026-07-14T10:55:29.1036372Z  + uvicorn==0.51.0

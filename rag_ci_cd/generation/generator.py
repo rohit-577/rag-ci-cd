@@ -30,7 +30,7 @@ def _call_ollama(
     req = Request("http://localhost:11434/api/generate", data=data, method="POST")
     req.add_header("Content-Type", "application/json")
     try:
-        resp = urlopen(req, timeout=120)
+        resp = urlopen(req, timeout=300)
         result = json.loads(resp.read().decode())
         return result.get("response", "")
     except (URLError, json.JSONDecodeError, OSError) as e:

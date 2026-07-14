@@ -1,0 +1,26 @@
+﻿2026-07-14T10:54:38.5151890Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+2026-07-14T10:54:38.5155864Z ##[group]Run astral-sh/setup-uv@v3
+2026-07-14T10:54:38.5156484Z with:
+2026-07-14T10:54:38.5156927Z   enable-cache: true
+2026-07-14T10:54:38.5157401Z   version: latest
+2026-07-14T10:54:38.5161755Z   github-token: ***
+2026-07-14T10:54:38.5162261Z   cache-dependency-glob: **/uv.lock
+2026-07-14T10:54:38.5162843Z   prune-cache: true
+2026-07-14T10:54:38.5163643Z env:
+2026-07-14T10:54:38.5164084Z   REGISTRY: ghcr.io
+2026-07-14T10:54:38.5164576Z   IMAGE_NAME: rohit-577/rag-ci-cd
+2026-07-14T10:54:38.5165126Z ##[endgroup]
+2026-07-14T10:54:38.6510513Z Downloading uv from "https://github.com/astral-sh/uv/releases/latest/download/uv-x86_64-unknown-linux-gnu.tar.gz" ...
+2026-07-14T10:54:38.6521945Z (node:2289) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-07-14T10:54:38.6524787Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-07-14T10:54:39.1501775Z [command]/usr/bin/tar xz --warning=no-unknown-keyword --overwrite -C /home/runner/work/_temp/dec74fb4-622d-4efa-ad80-a98811371e83 -f /home/runner/work/_temp/bc612a74-ec4f-4073-87c8-b9c9d8199adf
+2026-07-14T10:54:39.6677759Z Added /opt/hostedtoolcache/uv/0.11.28/x86_64 to the path
+2026-07-14T10:54:39.6680288Z Added /home/runner/.local/bin to the path
+2026-07-14T10:54:39.6687527Z Successfully installed uv version 0.11.28
+2026-07-14T10:54:39.6722026Z Set UV_CACHE_DIR to /home/runner/work/_temp/setup-uv-cache
+2026-07-14T10:54:39.6724825Z Searching files using cache dependency glob: **/uv.lock
+2026-07-14T10:54:39.7237589Z /home/runner/work/rag-ci-cd/rag-ci-cd/uv.lock
+2026-07-14T10:54:39.7259065Z Found 1 files to hash.
+2026-07-14T10:54:39.7262680Z Trying to restore uv cache from GitHub Actions cache with key: setup-uv-1-x86_64-unknown-linux-gnu-0.11.28-13c5a8ad5bc98b0d5d1f42070bd18e6d8b27fea7271e4e56ced461351355015f
+2026-07-14T10:54:39.8038734Z ##[warning]Failed to restore: Cache service responded with 400
+2026-07-14T10:54:39.8057248Z No GitHub Actions cache found for key: setup-uv-1-x86_64-unknown-linux-gnu-0.11.28-13c5a8ad5bc98b0d5d1f42070bd18e6d8b27fea7271e4e56ced461351355015f

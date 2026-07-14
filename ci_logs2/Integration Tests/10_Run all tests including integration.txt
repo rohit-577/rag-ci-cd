@@ -1,0 +1,315 @@
+﻿2026-07-14T10:58:21.1890521Z ##[group]Run uv run pytest -v --tb=short
+2026-07-14T10:58:21.1890890Z [36;1muv run pytest -v --tb=short[0m
+2026-07-14T10:58:21.1922064Z shell: /usr/bin/bash -e {0}
+2026-07-14T10:58:21.1922324Z env:
+2026-07-14T10:58:21.1922515Z   REGISTRY: ghcr.io
+2026-07-14T10:58:21.1922741Z   IMAGE_NAME: rohit-577/rag-ci-cd
+2026-07-14T10:58:21.1923073Z   UV_CACHE_DIR: /home/runner/work/_temp/setup-uv-cache
+2026-07-14T10:58:21.1923762Z ##[endgroup]
+2026-07-14T10:58:21.7547570Z ============================= test session starts ==============================
+2026-07-14T10:58:21.7548463Z platform linux -- Python 3.12.13, pytest-9.1.1, pluggy-1.6.0 -- /home/runner/work/rag-ci-cd/rag-ci-cd/.venv/bin/python
+2026-07-14T10:58:21.7549141Z cachedir: .pytest_cache
+2026-07-14T10:58:21.7549487Z rootdir: /home/runner/work/rag-ci-cd/rag-ci-cd
+2026-07-14T10:58:21.7549893Z configfile: pyproject.toml
+2026-07-14T10:58:21.7550195Z testpaths: tests
+2026-07-14T10:58:21.7550458Z plugins: anyio-4.14.1
+2026-07-14T10:58:26.5169365Z collecting ... collected 167 items
+2026-07-14T10:58:26.5170019Z 
+2026-07-14T10:58:26.5213657Z tests/test_chunking.py::TestPDFChunking::test_pdf_produces_chunks PASSED [  0%]
+2026-07-14T10:58:26.5246126Z tests/test_chunking.py::TestPDFChunking::test_pdf_chunks_have_metadata PASSED [  1%]
+2026-07-14T10:58:26.5277183Z tests/test_chunking.py::TestPDFChunking::test_pdf_chunks_have_page_numbers PASSED [  1%]
+2026-07-14T10:58:26.5307677Z tests/test_chunking.py::TestPDFChunking::test_pdf_chunks_have_chunk_types PASSED [  2%]
+2026-07-14T10:58:26.5320752Z tests/test_chunking.py::TestCSVChunking::test_csv_produces_chunks PASSED [  2%]
+2026-07-14T10:58:26.5333373Z tests/test_chunking.py::TestCSVChunking::test_csv_chunks_are_table_type PASSED [  3%]
+2026-07-14T10:58:26.5345849Z tests/test_chunking.py::TestCSVChunking::test_csv_table_chunk_has_headers PASSED [  4%]
+2026-07-14T10:58:26.5358398Z tests/test_chunking.py::TestCSVChunking::test_csv_table_chunk_contains_header_text PASSED [  4%]
+2026-07-14T10:58:26.5370704Z tests/test_chunking.py::TestCSVChunking::test_csv_chunks_respect_max_chars PASSED [  5%]
+2026-07-14T10:58:26.5383451Z tests/test_chunking.py::TestCSVChunking::test_csv_chunks_have_metadata PASSED [  5%]
+2026-07-14T10:58:26.5397070Z tests/test_chunking.py::TestTXTChunking::test_txt_produces_chunks PASSED [  6%]
+2026-07-14T10:58:26.5410109Z tests/test_chunking.py::TestTXTChunking::test_txt_chunks_have_metadata PASSED [  7%]
+2026-07-14T10:58:26.5423054Z tests/test_chunking.py::TestTXTChunking::test_txt_chunks_are_paragraph_type PASSED [  7%]
+2026-07-14T10:58:26.5440682Z tests/test_chunking.py::TestChunkingAllDocs::test_all_txt_docs_produce_chunks PASSED [  8%]
+2026-07-14T10:58:26.5466518Z tests/test_chunking.py::TestChunkingAllDocs::test_all_csv_docs_produce_chunks PASSED [  8%]
+2026-07-14T10:58:26.5668129Z tests/test_chunking.py::TestChunkingAllDocs::test_all_pdf_docs_produce_chunks PASSED [  9%]
+2026-07-14T10:58:26.5701853Z tests/test_chunking.py::TestChunkDeterminism::test_chunks_are_deterministic PASSED [ 10%]
+2026-07-14T10:58:26.5711697Z tests/test_evaluation.py::TestRetrievalRecall::test_perfect_recall PASSED [ 10%]
+2026-07-14T10:58:26.5721897Z tests/test_evaluation.py::TestRetrievalRecall::test_zero_recall PASSED   [ 11%]
+2026-07-14T10:58:26.5731879Z tests/test_evaluation.py::TestRetrievalRecall::test_partial_recall PASSED [ 11%]
+2026-07-14T10:58:26.5741783Z tests/test_evaluation.py::TestRetrievalRecall::test_empty_relevant PASSED [ 12%]
+2026-07-14T10:58:26.5751694Z tests/test_evaluation.py::TestRetrievalRecall::test_empty_chunks PASSED  [ 13%]
+2026-07-14T10:58:26.5761805Z tests/test_evaluation.py::TestRetrievalRecall::test_full_recall_multiple PASSED [ 13%]
+2026-07-14T10:58:26.5771749Z tests/test_evaluation.py::TestAnswerGrounding::test_sufficient PASSED    [ 14%]
+2026-07-14T10:58:26.5781669Z tests/test_evaluation.py::TestAnswerGrounding::test_partial PASSED       [ 14%]
+2026-07-14T10:58:26.5791608Z tests/test_evaluation.py::TestAnswerGrounding::test_insufficient PASSED  [ 15%]
+2026-07-14T10:58:26.5801980Z tests/test_evaluation.py::TestComputeRetrievalMetrics::test_perfect_metrics PASSED [ 16%]
+2026-07-14T10:58:26.5812017Z tests/test_evaluation.py::TestComputeRetrievalMetrics::test_partial_metrics PASSED [ 16%]
+2026-07-14T10:58:26.5821935Z tests/test_evaluation.py::TestComputeRetrievalMetrics::test_empty_relevant_set PASSED [ 17%]
+2026-07-14T10:58:26.5832086Z tests/test_evaluation.py::TestComputeAnswerMetrics::test_sufficient_answer PASSED [ 17%]
+2026-07-14T10:58:26.5842288Z tests/test_evaluation.py::TestComputeAnswerMetrics::test_insufficient_answer PASSED [ 18%]
+2026-07-14T10:58:26.5852040Z tests/test_evaluation.py::TestEvalExample::test_default_construction PASSED [ 19%]
+2026-07-14T10:58:26.5861741Z tests/test_evaluation.py::TestEvalExample::test_with_expected_terms PASSED [ 19%]
+2026-07-14T10:58:26.5871544Z tests/test_evaluation.py::TestEvalExample::test_with_relevant_ids PASSED [ 20%]
+2026-07-14T10:58:26.5882357Z tests/test_evaluation.py::TestEvalExample::test_with_description PASSED  [ 20%]
+2026-07-14T10:58:26.5892339Z tests/test_generation.py::TestConfidenceParsing::test_insufficient_detection PASSED [ 21%]
+2026-07-14T10:58:26.5902064Z tests/test_generation.py::TestConfidenceParsing::test_insufficient_not_enough PASSED [ 22%]
+2026-07-14T10:58:26.5911709Z tests/test_generation.py::TestConfidenceParsing::test_sufficient_detection PASSED [ 22%]
+2026-07-14T10:58:26.5921441Z tests/test_generation.py::TestConfidenceParsing::test_partial_detection PASSED [ 23%]
+2026-07-14T10:58:26.5931256Z tests/test_generation.py::TestConfidenceParsing::test_partial_uncertain PASSED [ 23%]
+2026-07-14T10:58:26.5940961Z tests/test_generation.py::TestConfidenceParsing::test_sufficient_default PASSED [ 24%]
+2026-07-14T10:58:26.5951223Z tests/test_generation.py::TestCitationExtraction::test_citation_from_referenced_filename PASSED [ 25%]
+2026-07-14T10:58:26.5961087Z tests/test_generation.py::TestCitationExtraction::test_citation_from_page_reference PASSED [ 25%]
+2026-07-14T10:58:26.5971038Z tests/test_generation.py::TestCitationExtraction::test_fallback_citation_when_no_reference PASSED [ 26%]
+2026-07-14T10:58:26.5980894Z tests/test_generation.py::TestCitationExtraction::test_multiple_citations PASSED [ 26%]
+2026-07-14T10:58:26.5990869Z tests/test_generation.py::TestAnswerToResponse::test_conversion PASSED   [ 27%]
+2026-07-14T10:58:26.6000747Z tests/test_generation.py::TestAnswerToResponse::test_conversion_with_complex_route PASSED [ 28%]
+2026-07-14T10:58:26.6011305Z tests/test_generation.py::TestAnswerToResponse::test_conversion_without_route PASSED [ 28%]
+2026-07-14T10:58:26.6023316Z tests/test_ingestion.py::TestCSVParsing::test_parse_csv PASSED           [ 29%]
+2026-07-14T10:58:26.6035150Z tests/test_ingestion.py::TestCSVParsing::test_csv_has_correct_headers PASSED [ 29%]
+2026-07-14T10:58:26.6048085Z tests/test_ingestion.py::TestCSVParsing::test_csv_row_count PASSED       [ 30%]
+2026-07-14T10:58:26.6059556Z tests/test_ingestion.py::TestCSVParsing::test_csv_metadata_structure PASSED [ 31%]
+2026-07-14T10:58:26.6071030Z tests/test_ingestion.py::TestCSVParsing::test_csv_first_row_values PASSED [ 31%]
+2026-07-14T10:58:26.6083303Z tests/test_ingestion.py::TestCSVParsing::test_parse_csv_deterministic_hash PASSED [ 32%]
+2026-07-14T10:58:26.6095006Z tests/test_ingestion.py::TestCSVParsing::test_csv_doc_id_from_filename PASSED [ 32%]
+2026-07-14T10:58:26.6106356Z tests/test_ingestion.py::TestTXTParsing::test_parse_txt PASSED           [ 33%]
+2026-07-14T10:58:26.6117622Z tests/test_ingestion.py::TestTXTParsing::test_txt_paragraph_count PASSED [ 34%]
+2026-07-14T10:58:26.6128751Z tests/test_ingestion.py::TestTXTParsing::test_txt_paragraphs_list PASSED [ 34%]
+2026-07-14T10:58:26.6140173Z tests/test_ingestion.py::TestTXTParsing::test_txt_deterministic_hash PASSED [ 35%]
+2026-07-14T10:58:26.6151291Z tests/test_ingestion.py::TestTXTParsing::test_txt_doc_id_from_filename PASSED [ 35%]
+2026-07-14T10:58:26.6181476Z tests/test_ingestion.py::TestPDFParsing::test_parse_pdf PASSED           [ 36%]
+2026-07-14T10:58:26.6210530Z tests/test_ingestion.py::TestPDFParsing::test_pdf_pages_content PASSED   [ 37%]
+2026-07-14T10:58:26.6240333Z tests/test_ingestion.py::TestPDFParsing::test_pdf_page_count PASSED      [ 37%]
+2026-07-14T10:58:26.6286408Z tests/test_ingestion.py::TestPDFParsing::test_pdf_deterministic_hash PASSED [ 38%]
+2026-07-14T10:58:26.6315270Z tests/test_ingestion.py::TestPDFParsing::test_pdf_doc_id_from_filename PASSED [ 38%]
+2026-07-14T10:58:26.6325900Z tests/test_ingestion.py::TestParserFactory::test_factory_returns_csv_parser PASSED [ 39%]
+2026-07-14T10:58:26.6336353Z tests/test_ingestion.py::TestParserFactory::test_factory_returns_txt_parser PASSED [ 40%]
+2026-07-14T10:58:26.6347247Z tests/test_ingestion.py::TestParserFactory::test_factory_returns_pdf_parser PASSED [ 40%]
+2026-07-14T10:58:26.6367843Z tests/test_ingestion.py::TestParserFactory::test_factory_raises_on_unknown PASSED [ 41%]
+2026-07-14T10:58:26.6379503Z tests/test_ingestion.py::TestParserFactory::test_factory_works_for_all_txt_docs PASSED [ 41%]
+2026-07-14T10:58:26.6391072Z tests/test_ingestion.py::TestParserFactory::test_factory_works_for_all_csv_docs PASSED [ 42%]
+2026-07-14T10:58:26.6403368Z tests/test_ingestion.py::TestParserFactory::test_factory_works_for_all_pdf_docs PASSED [ 43%]
+2026-07-14T10:59:42.8046258Z tests/test_integration.py::TestGoldSet::test_gold_set_question[E1] PASSED [ 43%]
+2026-07-14T11:00:34.5742238Z tests/test_integration.py::TestGoldSet::test_gold_set_question[E2] PASSED [ 44%]
+2026-07-14T11:01:17.8831407Z tests/test_integration.py::TestGoldSet::test_gold_set_question[E3] PASSED [ 44%]
+2026-07-14T11:03:19.5394037Z tests/test_integration.py::TestGoldSet::test_gold_set_question[E4] FAILED [ 45%]
+2026-07-14T11:04:00.8344558Z tests/test_integration.py::TestGoldSet::test_gold_set_question[E5] PASSED [ 46%]
+2026-07-14T11:06:02.4749456Z tests/test_integration.py::TestGoldSet::test_gold_set_question[E6] FAILED [ 46%]
+2026-07-14T11:06:52.4774783Z tests/test_integration.py::TestGoldSet::test_gold_set_question[E7] PASSED [ 47%]
+2026-07-14T11:07:36.6930474Z tests/test_integration.py::TestGoldSet::test_gold_set_question[E8] PASSED [ 47%]
+2026-07-14T11:08:20.0191666Z tests/test_integration.py::TestGoldSet::test_gold_set_question[E9] PASSED [ 48%]
+2026-07-14T11:09:20.3298569Z tests/test_integration.py::TestGoldSet::test_gold_set_question[E10] PASSED [ 49%]
+2026-07-14T11:11:21.9005293Z tests/test_integration.py::TestGoldSet::test_gold_set_question[H1] FAILED [ 49%]
+2026-07-14T11:13:23.5358329Z tests/test_integration.py::TestGoldSet::test_gold_set_question[H2] FAILED [ 50%]
+2026-07-14T11:15:25.6317145Z tests/test_integration.py::TestGoldSet::test_gold_set_question[H3] FAILED [ 50%]
+2026-07-14T11:17:27.2420448Z tests/test_integration.py::TestGoldSet::test_gold_set_question[H4] FAILED [ 51%]
+2026-07-14T11:18:11.1011279Z tests/test_integration.py::TestGoldSet::test_gold_set_question[H5] PASSED [ 52%]
+2026-07-14T11:18:59.8420926Z tests/test_integration.py::TestGoldSet::test_gold_set_question[H6] PASSED [ 52%]
+2026-07-14T11:19:37.4528516Z tests/test_integration.py::TestGoldSet::test_gold_set_question[X1] PASSED [ 53%]
+2026-07-14T11:21:25.8975401Z tests/test_integration.py::TestGoldSet::test_gold_set_question[X2] PASSED [ 53%]
+2026-07-14T11:23:27.5029796Z tests/test_integration.py::TestGoldSet::test_gold_set_question[X3] FAILED [ 54%]
+2026-07-14T11:24:07.4277027Z tests/test_integration.py::TestGoldSet::test_gold_set_question[X4] FAILED [ 55%]
+2026-07-14T11:24:07.4288063Z tests/test_models.py::TestDocumentFromFilename::test_txt_filename_parsing PASSED [ 55%]
+2026-07-14T11:24:07.4298417Z tests/test_models.py::TestDocumentFromFilename::test_csv_filename_parsing PASSED [ 56%]
+2026-07-14T11:24:07.4308574Z tests/test_models.py::TestDocumentFromFilename::test_pdf_filename_parsing PASSED [ 56%]
+2026-07-14T11:24:07.4318538Z tests/test_models.py::TestDocumentFromFilename::test_filename_without_doc_prefix PASSED [ 57%]
+2026-07-14T11:24:07.4328569Z tests/test_models.py::TestDocumentFromFilename::test_chunk_id_deterministic PASSED [ 58%]
+2026-07-14T11:24:07.4338647Z tests/test_models.py::TestDocumentFromFilename::test_chunk_id_differs_for_different_inputs PASSED [ 58%]
+2026-07-14T11:24:07.4348854Z tests/test_models.py::TestDocumentFromFilename::test_chunk_id_differs_for_different_pages PASSED [ 59%]
+2026-07-14T11:24:07.4358766Z tests/test_models.py::TestDocumentFromFilename::test_chunk_id_differs_for_different_indices PASSED [ 59%]
+2026-07-14T11:24:07.4368527Z tests/test_models.py::TestDocumentFromFilename::test_doc_type_enum_values PASSED [ 60%]
+2026-07-14T11:24:07.4379161Z tests/test_models.py::TestDocumentFromFilename::test_chunk_type_enum_values PASSED [ 61%]
+2026-07-14T11:24:08.9809036Z tests/test_reranking.py::TestReranker::test_reranker_returns_fewer_results PASSED [ 61%]
+2026-07-14T11:24:09.1782286Z tests/test_reranking.py::TestReranker::test_reranker_assigns_scores PASSED [ 62%]
+2026-07-14T11:24:09.3740672Z tests/test_reranking.py::TestReranker::test_reranker_maintains_metadata PASSED [ 62%]
+2026-07-14T11:24:09.3749926Z tests/test_reranking.py::TestReranker::test_reranker_empty_input PASSED  [ 63%]
+2026-07-14T11:24:09.5842079Z tests/test_reranking.py::TestReranker::test_reranker_method_indicator PASSED [ 64%]
+2026-07-14T11:24:09.7893775Z tests/test_reranking.py::TestReranker::test_reranker_increases_retrieval_time PASSED [ 64%]
+2026-07-14T11:24:09.9904360Z tests/test_reranking.py::TestReranker::test_reranker_rerank_scores_are_ordered PASSED [ 65%]
+2026-07-14T11:24:12.5161791Z tests/test_retrieval.py::TestDenseRetrieval::test_returns_results PASSED [ 65%]
+2026-07-14T11:24:12.6708131Z tests/test_retrieval.py::TestDenseRetrieval::test_results_have_scores PASSED [ 66%]
+2026-07-14T11:24:12.8275238Z tests/test_retrieval.py::TestDenseRetrieval::test_results_have_metadata PASSED [ 67%]
+2026-07-14T11:24:12.9834128Z tests/test_retrieval.py::TestDenseRetrieval::test_top_k_limits_results PASSED [ 67%]
+2026-07-14T11:24:12.9845177Z tests/test_retrieval.py::TestLexicalRetrieval::test_returns_results PASSED [ 68%]
+2026-07-14T11:24:12.9855978Z tests/test_retrieval.py::TestLexicalRetrieval::test_bm25_scores_positive PASSED [ 68%]
+2026-07-14T11:24:12.9866562Z tests/test_retrieval.py::TestLexicalRetrieval::test_lexical_finds_exact_terms PASSED [ 69%]
+2026-07-14T11:24:12.9877248Z tests/test_retrieval.py::TestLexicalRetrieval::test_lexical_finds_csv_content PASSED [ 70%]
+2026-07-14T11:24:13.1410722Z tests/test_retrieval.py::TestHybridRetrieval::test_returns_results PASSED [ 70%]
+2026-07-14T11:24:13.2923022Z tests/test_retrieval.py::TestHybridRetrieval::test_hybrid_has_scores PASSED [ 71%]
+2026-07-14T11:24:13.4432793Z tests/test_retrieval.py::TestHybridRetrieval::test_hybrid_deduplicates PASSED [ 71%]
+2026-07-14T11:24:13.5920973Z tests/test_retrieval.py::TestHybridRetrieval::test_retrieval_time_measured PASSED [ 72%]
+2026-07-14T11:24:13.7424005Z tests/test_retrieval.py::TestHybridRetrieval::test_returns_metadata PASSED [ 73%]
+2026-07-14T11:24:13.8934470Z tests/test_retrieval.py::TestHybridRetrieval::test_retrieval_result_has_method PASSED [ 73%]
+2026-07-14T11:24:14.0438798Z tests/test_retrieval.py::TestHybridRetrieval::test_retrieval_result_has_query PASSED [ 74%]
+2026-07-14T11:24:14.0447876Z tests/test_retrieval.py::TestBM25Impl::test_bm25_tokenize PASSED         [ 74%]
+2026-07-14T11:24:14.0457212Z tests/test_retrieval.py::TestBM25Impl::test_bm25_tokenize_expands_hyphens PASSED [ 75%]
+2026-07-14T11:24:14.0466661Z tests/test_retrieval.py::TestBM25Impl::test_bm25_tokenize_strips_punctuation PASSED [ 76%]
+2026-07-14T11:24:14.0477150Z tests/test_retrieval.py::TestIndexStore::test_add_and_retrieve_chunks PASSED [ 76%]
+2026-07-14T11:24:14.0487213Z tests/test_retrieval.py::TestIndexStore::test_get_chunk_by_id PASSED     [ 77%]
+2026-07-14T11:24:14.0497173Z tests/test_retrieval.py::TestIndexStore::test_get_nonexistent_chunk PASSED [ 77%]
+2026-07-14T11:24:14.0508526Z tests/test_retrieval.py::TestIndexStore::test_embeddings_shape PASSED    [ 78%]
+2026-07-14T11:24:14.0518603Z tests/test_routing.py::TestQueryClassification::test_simple_factual_what_is PASSED [ 79%]
+2026-07-14T11:24:14.0528130Z tests/test_routing.py::TestQueryClassification::test_simple_short_question PASSED [ 79%]
+2026-07-14T11:24:14.0537675Z tests/test_routing.py::TestQueryClassification::test_simple_how_much PASSED [ 80%]
+2026-07-14T11:24:14.0547321Z tests/test_routing.py::TestQueryClassification::test_simple_how_many PASSED [ 80%]
+2026-07-14T11:24:14.0556989Z tests/test_routing.py::TestQueryClassification::test_simple_what_was PASSED [ 81%]
+2026-07-14T11:24:14.0566549Z tests/test_routing.py::TestQueryClassification::test_simple_when PASSED  [ 82%]
+2026-07-14T11:24:14.0575977Z tests/test_routing.py::TestQueryClassification::test_simple_where PASSED [ 82%]
+2026-07-14T11:24:14.0585423Z tests/test_routing.py::TestQueryClassification::test_simple_is_there PASSED [ 83%]
+2026-07-14T11:24:14.0594866Z tests/test_routing.py::TestQueryClassification::test_simple_did PASSED   [ 83%]
+2026-07-14T11:24:14.0604106Z tests/test_routing.py::TestQueryClassification::test_simple_short_word_count PASSED [ 84%]
+2026-07-14T11:24:14.0613408Z tests/test_routing.py::TestQueryClassification::test_complex_comparison PASSED [ 85%]
+2026-07-14T11:24:14.0622876Z tests/test_routing.py::TestQueryClassification::test_complex_table_query PASSED [ 85%]
+2026-07-14T11:24:14.0632400Z tests/test_routing.py::TestQueryClassification::test_complex_multi_document PASSED [ 86%]
+2026-07-14T11:24:14.0641747Z tests/test_routing.py::TestQueryClassification::test_complex_trend PASSED [ 86%]
+2026-07-14T11:24:14.0651486Z tests/test_routing.py::TestQueryClassification::test_complex_long_question PASSED [ 87%]
+2026-07-14T11:24:14.0660855Z tests/test_routing.py::TestQueryClassification::test_complex_analyze PASSED [ 88%]
+2026-07-14T11:24:14.0670227Z tests/test_routing.py::TestQueryClassification::test_complex_explain PASSED [ 88%]
+2026-07-14T11:24:14.0679683Z tests/test_routing.py::TestQueryClassification::test_complex_summarize PASSED [ 89%]
+2026-07-14T11:24:14.0689136Z tests/test_routing.py::TestQueryClassification::test_complex_list PASSED [ 89%]
+2026-07-14T11:24:14.0698445Z tests/test_routing.py::TestQueryClassification::test_complex_vs PASSED   [ 90%]
+2026-07-14T11:24:14.0707925Z tests/test_routing.py::TestQueryClassification::test_complex_which_document PASSED [ 91%]
+2026-07-14T11:24:14.0717498Z tests/test_routing.py::TestQueryClassification::test_complex_all_documents PASSED [ 91%]
+2026-07-14T11:24:14.0726956Z tests/test_routing.py::TestQueryClassification::test_complex_metric_keyword PASSED [ 92%]
+2026-07-14T11:24:14.0744216Z tests/test_routing.py::TestRouteConfig::test_simple_model_matches_config PASSED [ 92%]
+2026-07-14T11:24:14.0753386Z tests/test_routing.py::TestRouteConfig::test_complex_model_matches_config PASSED [ 93%]
+2026-07-14T11:24:14.0762624Z tests/test_routing.py::TestRouteConfig::test_simple_model_is_qwen PASSED [ 94%]
+2026-07-14T11:24:14.0771875Z tests/test_routing.py::TestRouteConfig::test_complex_model_is_llama PASSED [ 94%]
+2026-07-14T11:24:14.0781181Z tests/test_routing.py::TestRouteConfig::test_simple_depth PASSED         [ 95%]
+2026-07-14T11:24:14.0790297Z tests/test_routing.py::TestRouteConfig::test_complex_depth PASSED        [ 95%]
+2026-07-14T11:24:14.0800497Z tests/test_routing.py::TestRouteConfig::test_simple_depth_less_than_complex PASSED [ 96%]
+2026-07-14T11:24:15.4434743Z tests/test_service.py::TestServiceHealth::test_health_endpoint PASSED    [ 97%]
+2026-07-14T11:24:33.1982270Z tests/test_service.py::TestServiceQuery::test_query_endpoint PASSED      [ 97%]
+2026-07-14T11:24:33.2010021Z tests/test_service.py::TestServiceQuery::test_query_no_index PASSED      [ 98%]
+2026-07-14T11:24:48.6309686Z tests/test_service.py::TestServiceQuery::test_query_response_structure PASSED [ 98%]
+2026-07-14T11:24:49.9792468Z tests/test_service.py::TestServiceDocuments::test_documents_endpoint PASSED [ 99%]
+2026-07-14T11:24:51.6990984Z tests/test_service.py::TestServiceDocuments::test_documents_have_correct_fields PASSED [100%]
+2026-07-14T11:24:51.6992140Z 
+2026-07-14T11:24:51.6992556Z =================================== FAILURES ===================================
+2026-07-14T11:24:51.6994112Z ____________________ TestGoldSet.test_gold_set_question[E4] ____________________
+2026-07-14T11:24:51.6995893Z tests/test_integration.py:66: in test_gold_set_question
+2026-07-14T11:24:51.6996447Z     assert len(found) > 0, (
+2026-07-14T11:24:51.6996999Z E   AssertionError: Question: Which fruit has the highest calories per serving?
+2026-07-14T11:24:51.6997597Z E     Expected any of: ['Mango', '202']
+2026-07-14T11:24:51.6998042Z E     Answer: [Error generating response: timed out]
+2026-07-14T11:24:51.6998458Z E     Matched: []
+2026-07-14T11:24:51.6998736Z E   assert 0 > 0
+2026-07-14T11:24:51.6999014Z E    +  where 0 = len([])
+2026-07-14T11:24:51.6999476Z ____________________ TestGoldSet.test_gold_set_question[E6] ____________________
+2026-07-14T11:24:51.7000089Z tests/test_integration.py:66: in test_gold_set_question
+2026-07-14T11:24:51.7000537Z     assert len(found) > 0, (
+2026-07-14T11:24:51.7001049Z E   AssertionError: Question: How far does the Ganges River flow in kilometers?
+2026-07-14T11:24:51.7001619Z E     Expected any of: ['2525']
+2026-07-14T11:24:51.7002007Z E     Answer: [Error generating response: timed out]
+2026-07-14T11:24:51.7002450Z E     Matched: []
+2026-07-14T11:24:51.7002723Z E   assert 0 > 0
+2026-07-14T11:24:51.7002998Z E    +  where 0 = len([])
+2026-07-14T11:24:51.7003733Z ____________________ TestGoldSet.test_gold_set_question[H1] ____________________
+2026-07-14T11:24:51.7004332Z tests/test_integration.py:66: in test_gold_set_question
+2026-07-14T11:24:51.7004994Z     assert len(found) > 0, (
+2026-07-14T11:24:51.7005595Z E   AssertionError: Question: Compare the weight of a blue whale versus an elephant in kilograms
+2026-07-14T11:24:51.7006238Z E     Expected any of: ['150000', '6000']
+2026-07-14T11:24:51.7006564Z E     Answer: [Error generating response: timed out]
+2026-07-14T11:24:51.7006905Z E     Matched: []
+2026-07-14T11:24:51.7007105Z E   assert 0 > 0
+2026-07-14T11:24:51.7007311Z E    +  where 0 = len([])
+2026-07-14T11:24:51.7007658Z ____________________ TestGoldSet.test_gold_set_question[H2] ____________________
+2026-07-14T11:24:51.7008096Z tests/test_integration.py:66: in test_gold_set_question
+2026-07-14T11:24:51.7008444Z     assert len(found) > 0, (
+2026-07-14T11:24:51.7008798Z E   AssertionError: Question: List all students who scored above 90 marks
+2026-07-14T11:24:51.7009290Z E     Expected any of: ['Alice', 'Charlie', 'Fiona', 'Helen', 'Kevin', 'Mike']
+2026-07-14T11:24:51.7009711Z E     Answer: [Error generating response: timed out]
+2026-07-14T11:24:51.7010019Z E     Matched: []
+2026-07-14T11:24:51.7010218Z E   assert 0 > 0
+2026-07-14T11:24:51.7010421Z E    +  where 0 = len([])
+2026-07-14T11:24:51.7010757Z ____________________ TestGoldSet.test_gold_set_question[H3] ____________________
+2026-07-14T11:24:51.7011195Z tests/test_integration.py:66: in test_gold_set_question
+2026-07-14T11:24:51.7011517Z     assert len(found) > 0, (
+2026-07-14T11:24:51.7011904Z E   AssertionError: Question: What subjects are taught according to the student data?
+2026-07-14T11:24:51.7012441Z E     Expected any of: ['Mathematics', 'Physics', 'Chemistry', 'Biology']
+2026-07-14T11:24:51.7012853Z E     Answer: [Error generating response: timed out]
+2026-07-14T11:24:51.7013371Z E     Matched: []
+2026-07-14T11:24:51.7013586Z E   assert 0 > 0
+2026-07-14T11:24:51.7013790Z E    +  where 0 = len([])
+2026-07-14T11:24:51.7014120Z ____________________ TestGoldSet.test_gold_set_question[H4] ____________________
+2026-07-14T11:24:51.7014761Z tests/test_integration.py:66: in test_gold_set_question
+2026-07-14T11:24:51.7015082Z     assert len(found) > 0, (
+2026-07-14T11:24:51.7015383Z E   AssertionError: Question: Which fruits are red in color?
+2026-07-14T11:24:51.7015750Z E     Expected any of: ['Apple', 'Strawberry']
+2026-07-14T11:24:51.7016083Z E     Answer: [Error generating response: timed out]
+2026-07-14T11:24:51.7016383Z E     Matched: []
+2026-07-14T11:24:51.7016576Z E   assert 0 > 0
+2026-07-14T11:24:51.7016776Z E    +  where 0 = len([])
+2026-07-14T11:24:51.7017094Z ____________________ TestGoldSet.test_gold_set_question[X3] ____________________
+2026-07-14T11:24:51.7017518Z tests/test_integration.py:66: in test_gold_set_question
+2026-07-14T11:24:51.7017958Z     assert len(found) > 0, (
+2026-07-14T11:24:51.7018293Z E   AssertionError: Question: Which animal in the data lives the longest?
+2026-07-14T11:24:51.7018677Z E     Expected any of: ['Turtle', '150']
+2026-07-14T11:24:51.7018987Z E     Answer: [Error generating response: timed out]
+2026-07-14T11:24:51.7019280Z E     Matched: []
+2026-07-14T11:24:51.7019471Z E   assert 0 > 0
+2026-07-14T11:24:51.7019663Z E    +  where 0 = len([])
+2026-07-14T11:24:51.7019983Z ____________________ TestGoldSet.test_gold_set_question[X4] ____________________
+2026-07-14T11:24:51.7020395Z tests/test_integration.py:66: in test_gold_set_question
+2026-07-14T11:24:51.7020699Z     assert len(found) > 0, (
+2026-07-14T11:24:51.7021032Z E   AssertionError: Question: What is the fastest animal in the dataset?
+2026-07-14T11:24:51.7021429Z E     Expected any of: ['Peregrine Falcon', '390']
+2026-07-14T11:24:51.7022571Z E     Answer: The fastest animal in the dataset is the blue whale, which can reach speeds of up to 25 miles per hour (40 kilometers per hour) during feeding or migration. This information is supported by Document 2: "The blue whale is the largest animal on Earth, reaching lengths of up to 30 meters and weighing a
+2026-07-14T11:24:51.7024030Z E     Matched: []
+2026-07-14T11:24:51.7024240Z E   assert 0 > 0
+2026-07-14T11:24:51.7024458Z E    +  where 0 = len([])
+2026-07-14T11:24:51.7024741Z =============================== warnings summary ===============================
+2026-07-14T11:24:51.7025148Z .venv/lib/python3.12/site-packages/fastapi/testclient.py:1
+2026-07-14T11:24:51.7026086Z   /home/runner/work/rag-ci-cd/rag-ci-cd/.venv/lib/python3.12/site-packages/fastapi/testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+2026-07-14T11:24:51.7027031Z     from starlette.testclient import TestClient as TestClient  # noqa
+2026-07-14T11:24:51.7027313Z 
+2026-07-14T11:24:51.7027534Z -- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+2026-07-14T11:24:51.7027989Z =========================== short test summary info ============================
+2026-07-14T11:24:51.7028713Z FAILED tests/test_integration.py::TestGoldSet::test_gold_set_question[E4] - AssertionError: Question: Which fruit has the highest calories per serving?
+2026-07-14T11:24:51.7029367Z   Expected any of: ['Mango', '202']
+2026-07-14T11:24:51.7029657Z   Answer: [Error generating response: timed out]
+2026-07-14T11:24:51.7029939Z   Matched: []
+2026-07-14T11:24:51.7030129Z assert 0 > 0
+2026-07-14T11:24:51.7030318Z  +  where 0 = len([])
+2026-07-14T11:24:51.7030894Z FAILED tests/test_integration.py::TestGoldSet::test_gold_set_question[E6] - AssertionError: Question: How far does the Ganges River flow in kilometers?
+2026-07-14T11:24:51.7031532Z   Expected any of: ['2525']
+2026-07-14T11:24:51.7031791Z   Answer: [Error generating response: timed out]
+2026-07-14T11:24:51.7032065Z   Matched: []
+2026-07-14T11:24:51.7032256Z assert 0 > 0
+2026-07-14T11:24:51.7032450Z  +  where 0 = len([])
+2026-07-14T11:24:51.7033085Z FAILED tests/test_integration.py::TestGoldSet::test_gold_set_question[H1] - AssertionError: Question: Compare the weight of a blue whale versus an elephant in kilograms
+2026-07-14T11:24:51.7034111Z   Expected any of: ['150000', '6000']
+2026-07-14T11:24:51.7034569Z   Answer: [Error generating response: timed out]
+2026-07-14T11:24:51.7034849Z   Matched: []
+2026-07-14T11:24:51.7035034Z assert 0 > 0
+2026-07-14T11:24:51.7035229Z  +  where 0 = len([])
+2026-07-14T11:24:51.7035793Z FAILED tests/test_integration.py::TestGoldSet::test_gold_set_question[H2] - AssertionError: Question: List all students who scored above 90 marks
+2026-07-14T11:24:51.7036506Z   Expected any of: ['Alice', 'Charlie', 'Fiona', 'Helen', 'Kevin', 'Mike']
+2026-07-14T11:24:51.7036896Z   Answer: [Error generating response: timed out]
+2026-07-14T11:24:51.7037172Z   Matched: []
+2026-07-14T11:24:51.7037355Z assert 0 > 0
+2026-07-14T11:24:51.7037544Z  +  where 0 = len([])
+2026-07-14T11:24:51.7038265Z FAILED tests/test_integration.py::TestGoldSet::test_gold_set_question[H3] - AssertionError: Question: What subjects are taught according to the student data?
+2026-07-14T11:24:51.7038998Z   Expected any of: ['Mathematics', 'Physics', 'Chemistry', 'Biology']
+2026-07-14T11:24:51.7039379Z   Answer: [Error generating response: timed out]
+2026-07-14T11:24:51.7039658Z   Matched: []
+2026-07-14T11:24:51.7039840Z assert 0 > 0
+2026-07-14T11:24:51.7040022Z  +  where 0 = len([])
+2026-07-14T11:24:51.7040538Z FAILED tests/test_integration.py::TestGoldSet::test_gold_set_question[H4] - AssertionError: Question: Which fruits are red in color?
+2026-07-14T11:24:51.7041119Z   Expected any of: ['Apple', 'Strawberry']
+2026-07-14T11:24:51.7041413Z   Answer: [Error generating response: timed out]
+2026-07-14T11:24:51.7041729Z   Matched: []
+2026-07-14T11:24:51.7041909Z assert 0 > 0
+2026-07-14T11:24:51.7042088Z  +  where 0 = len([])
+2026-07-14T11:24:51.7042635Z FAILED tests/test_integration.py::TestGoldSet::test_gold_set_question[X3] - AssertionError: Question: Which animal in the data lives the longest?
+2026-07-14T11:24:51.7043577Z   Expected any of: ['Turtle', '150']
+2026-07-14T11:24:51.7043870Z   Answer: [Error generating response: timed out]
+2026-07-14T11:24:51.7044140Z   Matched: []
+2026-07-14T11:24:51.7044319Z assert 0 > 0
+2026-07-14T11:24:51.7044504Z  +  where 0 = len([])
+2026-07-14T11:24:51.7045046Z FAILED tests/test_integration.py::TestGoldSet::test_gold_set_question[X4] - AssertionError: Question: What is the fastest animal in the dataset?
+2026-07-14T11:24:51.7045677Z   Expected any of: ['Peregrine Falcon', '390']
+2026-07-14T11:24:51.7046805Z   Answer: The fastest animal in the dataset is the blue whale, which can reach speeds of up to 25 miles per hour (40 kilometers per hour) during feeding or migration. This information is supported by Document 2: "The blue whale is the largest animal on Earth, reaching lengths of up to 30 meters and weighing a
+2026-07-14T11:24:51.7047893Z   Matched: []
+2026-07-14T11:24:51.7048077Z assert 0 > 0
+2026-07-14T11:24:51.7048260Z  +  where 0 = len([])
+2026-07-14T11:24:51.7048544Z ============ 8 failed, 159 passed, 1 warning in 1589.57s (0:26:29) =============
+2026-07-14T11:24:53.5107697Z ##[error]Process completed with exit code 1.

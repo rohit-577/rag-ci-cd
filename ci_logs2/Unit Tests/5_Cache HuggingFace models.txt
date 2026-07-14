@@ -1,0 +1,43 @@
+﻿2026-07-14T10:53:12.1385908Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+2026-07-14T10:53:12.1387221Z ##[group]Run actions/cache@v4
+2026-07-14T10:53:12.1387460Z with:
+2026-07-14T10:53:12.1387657Z   path: ~/.cache/huggingface
+2026-07-14T10:53:12.1388044Z   key: hf-Linux-2fdcd4cf2852e1d26f87bab2ece926efd2179fe0fa399cca76d6c66b8a4c5c35
+2026-07-14T10:53:12.1388474Z   restore-keys: hf-Linux-
+2026-07-14T10:53:12.1388722Z   enableCrossOsArchive: false
+2026-07-14T10:53:12.1389163Z   fail-on-cache-miss: false
+2026-07-14T10:53:12.1389446Z   lookup-only: false
+2026-07-14T10:53:12.1389656Z   save-always: false
+2026-07-14T10:53:12.1389852Z env:
+2026-07-14T10:53:12.1390034Z   REGISTRY: ghcr.io
+2026-07-14T10:53:12.1390250Z   IMAGE_NAME: rohit-577/rag-ci-cd
+2026-07-14T10:53:12.1390589Z   UV_CACHE_DIR: /home/runner/work/_temp/setup-uv-cache
+2026-07-14T10:53:12.1390898Z ##[endgroup]
+2026-07-14T10:53:12.2424780Z (node:2328) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-07-14T10:53:12.2425785Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-07-14T10:53:12.5158483Z Cache hit for: hf-Linux-2fdcd4cf2852e1d26f87bab2ece926efd2179fe0fa399cca76d6c66b8a4c5c35
+2026-07-14T10:53:12.5263046Z (node:2328) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-07-14T10:53:13.8188625Z Received 0 of 2769430625 (0.0%), 0.0 MBs/sec
+2026-07-14T10:53:14.8193734Z Received 79691776 of 2769430625 (2.9%), 38.0 MBs/sec
+2026-07-14T10:53:15.8197315Z Received 188743680 of 2769430625 (6.8%), 60.0 MBs/sec
+2026-07-14T10:53:16.8237816Z Received 381681664 of 2769430625 (13.8%), 90.9 MBs/sec
+2026-07-14T10:53:17.8215083Z Received 536870912 of 2769430625 (19.4%), 102.3 MBs/sec
+2026-07-14T10:53:18.8262810Z Received 742391808 of 2769430625 (26.8%), 117.9 MBs/sec
+2026-07-14T10:53:19.8283239Z Received 939524096 of 2769430625 (33.9%), 127.8 MBs/sec
+2026-07-14T10:53:20.8279857Z Received 1098907648 of 2769430625 (39.7%), 130.9 MBs/sec
+2026-07-14T10:53:21.8285334Z Received 1300234240 of 2769430625 (46.9%), 137.6 MBs/sec
+2026-07-14T10:53:22.8403386Z Received 1476395008 of 2769430625 (53.3%), 140.5 MBs/sec
+2026-07-14T10:53:23.8375654Z Received 1606418432 of 2769430625 (58.0%), 139.0 MBs/sec
+2026-07-14T10:53:24.8385266Z Received 1736441856 of 2769430625 (62.7%), 137.8 MBs/sec
+2026-07-14T10:53:25.8425077Z Received 1866465280 of 2769430625 (67.4%), 136.7 MBs/sec
+2026-07-14T10:53:26.8435421Z Received 2013265920 of 2769430625 (72.7%), 136.9 MBs/sec
+2026-07-14T10:53:27.8437448Z Received 2143289344 of 2769430625 (77.4%), 136.0 MBs/sec
+2026-07-14T10:53:28.8478136Z Received 2248146944 of 2769430625 (81.2%), 133.8 MBs/sec
+2026-07-14T10:53:29.8539151Z Received 2411724800 of 2769430625 (87.1%), 135.0 MBs/sec
+2026-07-14T10:53:30.8495523Z Received 2550136832 of 2769430625 (92.1%), 134.9 MBs/sec
+2026-07-14T10:53:31.8500687Z Received 2696937472 of 2769430625 (97.4%), 135.1 MBs/sec
+2026-07-14T10:53:32.2761745Z Received 2769430625 of 2769430625 (100.0%), 135.7 MBs/sec
+2026-07-14T10:53:32.2764607Z Cache Size: ~2641 MB (2769430625 B)
+2026-07-14T10:53:32.2888228Z [command]/usr/bin/tar -xf /home/runner/work/_temp/8bc2ae1e-4275-4eba-8508-ba0f0687f1bb/cache.tzst -P -C /home/runner/work/rag-ci-cd/rag-ci-cd --use-compress-program unzstd
+2026-07-14T10:53:41.8333738Z Cache restored successfully
+2026-07-14T10:53:41.9612137Z Cache restored from key: hf-Linux-2fdcd4cf2852e1d26f87bab2ece926efd2179fe0fa399cca76d6c66b8a4c5c35

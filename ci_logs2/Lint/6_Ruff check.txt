@@ -1,0 +1,12 @@
+﻿2026-07-14T10:53:00.7604112Z ##[group]Run uvx ruff check .
+2026-07-14T10:53:00.7604422Z [36;1muvx ruff check .[0m
+2026-07-14T10:53:00.7636050Z shell: /usr/bin/bash -e {0}
+2026-07-14T10:53:00.7636299Z env:
+2026-07-14T10:53:00.7636492Z   REGISTRY: ghcr.io
+2026-07-14T10:53:00.7636721Z   IMAGE_NAME: rohit-577/rag-ci-cd
+2026-07-14T10:53:00.7637015Z   UV_CACHE_DIR: /home/runner/work/_temp/setup-uv-cache
+2026-07-14T10:53:00.7637322Z ##[endgroup]
+2026-07-14T10:53:00.8958337Z Downloading ruff (11.0MiB)
+2026-07-14T10:53:01.0022198Z  Downloaded ruff
+2026-07-14T10:53:01.0046956Z Installed 1 package in 2ms
+2026-07-14T10:53:01.1496270Z All checks passed!

@@ -1,0 +1,33 @@
+﻿2026-07-14T10:54:36.4352257Z Current runner version: '2.335.1'
+2026-07-14T10:54:36.4379700Z ##[group]Runner Image Provisioner
+2026-07-14T10:54:36.4380670Z Hosted Compute Agent
+2026-07-14T10:54:36.4381381Z Version: 20260624.560
+2026-07-14T10:54:36.4382036Z Commit: 925d229a51159bc391ae97e54a2dd1fe20af789d
+2026-07-14T10:54:36.4382860Z Build Date: 2026-06-24T18:26:47Z
+2026-07-14T10:54:36.4383828Z Worker ID: {fbde24a8-5da7-47f8-80bd-9672a612189f}
+2026-07-14T10:54:36.4384636Z Azure Region: westus
+2026-07-14T10:54:36.4385276Z ##[endgroup]
+2026-07-14T10:54:36.4386857Z ##[group]Operating System
+2026-07-14T10:54:36.4387608Z Ubuntu
+2026-07-14T10:54:36.4388151Z 24.04.4
+2026-07-14T10:54:36.4388658Z LTS
+2026-07-14T10:54:36.4389280Z ##[endgroup]
+2026-07-14T10:54:36.4389884Z ##[group]Runner Image
+2026-07-14T10:54:36.4390530Z Image: ubuntu-24.04
+2026-07-14T10:54:36.4391102Z Version: 20260705.232.1
+2026-07-14T10:54:36.4392176Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20260705.232/images/ubuntu/Ubuntu2404-Readme.md
+2026-07-14T10:54:36.4394309Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20260705.232
+2026-07-14T10:54:36.4395624Z ##[endgroup]
+2026-07-14T10:54:36.4397011Z ##[group]GITHUB_TOKEN Permissions
+2026-07-14T10:54:36.4399173Z Contents: read
+2026-07-14T10:54:36.4399948Z Metadata: read
+2026-07-14T10:54:36.4400519Z Packages: read
+2026-07-14T10:54:36.4401099Z ##[endgroup]
+2026-07-14T10:54:36.4403579Z Secret source: Actions
+2026-07-14T10:54:36.4404399Z Prepare workflow directory
+2026-07-14T10:54:36.4987442Z Prepare all required actions
+2026-07-14T10:54:36.5026877Z Getting action download info
+2026-07-14T10:54:36.8335200Z Download action repository 'actions/checkout@v4' (SHA:34e114876b0b11c390a56381ad16ebd13914f8d5)
+2026-07-14T10:54:36.9132940Z Download action repository 'astral-sh/setup-uv@v3' (SHA:caf0cab7a618c569241d31dcd442f54681755d39)
+2026-07-14T10:54:37.4563926Z Download action repository 'actions/cache@v4' (SHA:0057852bfaa89a56745cba8c7296529d2fc39830)
+2026-07-14T10:54:37.7052925Z Complete job name: Integration Tests

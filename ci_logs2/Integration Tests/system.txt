@@ -1,0 +1,9 @@
+2026-07-14T10:54:33.7320000Z Evaluating integration.if
+2026-07-14T10:54:33.7320000Z Evaluating: (success() && (((github.event_name == 'push') && (github.ref == 'refs/heads/main'))))
+2026-07-14T10:54:33.7320000Z Expanded: (true && (('push' == 'push') && ('refs/heads/main' == 'refs/heads/main')))
+2026-07-14T10:54:33.7320000Z Result: true
+2026-07-14T10:54:33.7420000Z Job is about to start running on the hosted runner: GitHub Actions 1000000010
+2026-07-14T10:54:33.7420000Z Job is waiting for a hosted runner to come online.
+2026-07-14T10:54:33.7350000Z Requested labels: ubuntu-latest
+2026-07-14T10:54:33.7350000Z Job defined at: rohit-577/rag-ci-cd/.github/workflows/ci-cd.yml@refs/heads/main
+2026-07-14T10:54:33.7350000Z Waiting for a runner to pick up this job...

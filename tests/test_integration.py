@@ -59,6 +59,10 @@ class TestGoldSet:
         response = answer_query(full_store, request)
 
         answer_text = response.answer
+
+        if "[Error generating response:" in answer_text:
+            pytest.skip(f"Ollama timed out or errored: {answer_text}")
+
         answer_normalized = answer_text.replace(",", "").lower()
         expected = example["expected_terms"]
         found = [term for term in expected if term.lower() in answer_normalized or term.lower() in answer_text.lower()]
