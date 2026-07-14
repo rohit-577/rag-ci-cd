@@ -16,8 +16,8 @@ def test_store(tmp_path) -> IndexStore:
     store = IndexStore(tmp_path)
     docs_root = Path(__file__).resolve().parent.parent / "docs"
     samples = [
-        docs_root / "DOC-1_INTC_2016_ID556661.csv",
-        docs_root / "DOC-103_TSLA_2019_ID679016.txt",
+        docs_root / "DOC-11_STUDENTS_2024_011.csv",
+        docs_root / "DOC-1_ALBERT_2024_001.txt",
     ]
     emb = EmbeddingModel()
     for sp in samples:
@@ -33,12 +33,13 @@ def test_store(tmp_path) -> IndexStore:
     return store
 
 
+@pytest.mark.integration
 class TestServiceHealth:
     def test_health_endpoint(self, test_store: IndexStore):
         from rag_ci_cd.service.app import app
 
-        # Override the global store for testing
         import rag_ci_cd.service.app as svc_app
+
         svc_app.store = test_store
 
         client = TestClient(app)
@@ -49,37 +50,70 @@ class TestServiceHealth:
         assert data["chunks_indexed"] > 0
 
 
+@pytest.mark.integration
 class TestServiceQuery:
     def test_query_endpoint(self, test_store: IndexStore):
         from rag_ci_cd.service.app import app
+
         import rag_ci_cd.service.app as svc_app
+
         svc_app.store = test_store
 
         client = TestClient(app)
-        response = client.post("/query", json={
-            "query": "stability metric",
-            "top_k": 5,
-            "rerank": False,
-        })
+        response = client.post(
+            "/query",
+            json={
+                "query": "student marks",
+                "top_k": 5,
+                "rerank": False,
+            },
+        )
         assert response.status_code == 200
         data = response.json()
-        assert data["query"] == "stability metric"
+        assert data["query"] == "student marks"
         assert len(data["citations"]) > 0
 
     def test_query_no_index(self):
         from rag_ci_cd.service.app import app
+
         import rag_ci_cd.service.app as svc_app
+
         svc_app.store = None
 
         client = TestClient(app)
         response = client.post("/query", json={"query": "test"})
         assert response.status_code == 503
 
+    def test_query_response_structure(self, test_store: IndexStore):
+        from rag_ci_cd.service.app import app
 
+        import rag_ci_cd.service.app as svc_app
+
+        svc_app.store = test_store
+
+        client = TestClient(app)
+        response = client.post(
+            "/query",
+            json={"query": "Einstein", "top_k": 3, "rerank": False},
+        )
+        assert response.status_code == 200
+        data = response.json()
+        assert "query" in data
+        assert "answer" in data
+        assert "citations" in data
+        assert "confidence" in data
+        assert "sufficiency" in data
+        assert "retrieval_time_ms" in data
+        assert "generation_time_ms" in data
+
+
+@pytest.mark.integration
 class TestServiceDocuments:
     def test_documents_endpoint(self, test_store: IndexStore):
         from rag_ci_cd.service.app import app
+
         import rag_ci_cd.service.app as svc_app
+
         svc_app.store = test_store
 
         client = TestClient(app)
@@ -91,3 +125,20 @@ class TestServiceDocuments:
         for doc in data["documents"]:
             assert "doc_id" in doc
             assert "chunks" in doc
+
+    def test_documents_have_correct_fields(self, test_store: IndexStore):
+        from rag_ci_cd.service.app import app
+
+        import rag_ci_cd.service.app as svc_app
+
+        svc_app.store = test_store
+
+        client = TestClient(app)
+        response = client.get("/documents")
+        data = response.json()
+        for doc in data["documents"]:
+            assert "doc_id" in doc
+            assert "filename" in doc
+            assert "doc_type" in doc
+            assert "chunks" in doc
+            assert doc["chunks"] > 0

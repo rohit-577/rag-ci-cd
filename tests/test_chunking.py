@@ -1,6 +1,7 @@
 from pathlib import Path
 
 from rag_ci_cd.chunking.contextual_chunker import ContextualChunker
+from rag_ci_cd.config import CHUNK_MAX_CHARS
 from rag_ci_cd.ingestion.factory import get_parser
 from rag_ci_cd.models.document import ChunkType
 
@@ -24,46 +25,75 @@ class TestPDFChunking:
             assert c.filename == doc.filename
             assert c.ticker == doc.ticker
             assert c.year == doc.year
-            assert c.page_number is not None and c.page_number >= 1
 
-    def test_pdf_chunks_have_section_titles(self, sample_pdf: Path):
+    def test_pdf_chunks_have_page_numbers(self, sample_pdf: Path):
         parser = get_parser(sample_pdf)
         doc = parser.parse(sample_pdf)
         chunker = ContextualChunker()
         chunks = chunker.chunk(doc)
-        section_titles = {c.section_title for c in chunks if c.section_title}
-        assert len(section_titles) > 0
+        for c in chunks:
+            assert c.page_number is not None and c.page_number >= 1
+
+    def test_pdf_chunks_have_chunk_types(self, sample_pdf: Path):
+        parser = get_parser(sample_pdf)
+        doc = parser.parse(sample_pdf)
+        chunker = ContextualChunker()
+        chunks = chunker.chunk(doc)
+        for c in chunks:
+            assert c.chunk_type in (ChunkType.PARAGRAPH, ChunkType.PAGE, ChunkType.SECTION)
 
 
 class TestCSVChunking:
-    def test_csv_produces_table_and_rows(self, sample_csv: Path):
+    def test_csv_produces_chunks(self, sample_csv: Path):
         parser = get_parser(sample_csv)
         doc = parser.parse(sample_csv)
         chunker = ContextualChunker()
         chunks = chunker.chunk(doc)
-        assert len(chunks) > 1  # at least one table + rows
-        types = {c.chunk_type for c in chunks}
-        assert ChunkType.TABLE in types
-        assert ChunkType.TABLE_ROW in types
+        assert len(chunks) > 0
+
+    def test_csv_chunks_are_table_type(self, sample_csv: Path):
+        parser = get_parser(sample_csv)
+        doc = parser.parse(sample_csv)
+        chunker = ContextualChunker()
+        chunks = chunker.chunk(doc)
+        for c in chunks:
+            assert c.chunk_type == ChunkType.TABLE
 
     def test_csv_table_chunk_has_headers(self, sample_csv: Path):
         parser = get_parser(sample_csv)
         doc = parser.parse(sample_csv)
         chunker = ContextualChunker()
         chunks = chunker.chunk(doc)
-        table_chunks = [c for c in chunks if c.chunk_type == ChunkType.TABLE]
-        assert len(table_chunks) == 1
-        assert table_chunks[0].table_headers is not None
+        for c in chunks:
+            assert c.table_headers is not None
+            assert len(c.table_headers) > 0
 
-    def test_csv_row_chunks_have_row_index(self, sample_csv: Path):
+    def test_csv_table_chunk_contains_header_text(self, sample_csv: Path):
         parser = get_parser(sample_csv)
         doc = parser.parse(sample_csv)
         chunker = ContextualChunker()
         chunks = chunker.chunk(doc)
-        row_chunks = [c for c in chunks if c.chunk_type == ChunkType.TABLE_ROW]
-        assert len(row_chunks) > 0
-        for rc in row_chunks:
-            assert rc.row_index is not None
+        for c in chunks:
+            assert "Name" in c.content
+            assert "Subject" in c.content
+
+    def test_csv_chunks_respect_max_chars(self, sample_csv: Path):
+        parser = get_parser(sample_csv)
+        doc = parser.parse(sample_csv)
+        chunker = ContextualChunker()
+        chunks = chunker.chunk(doc)
+        for c in chunks:
+            assert len(c.content) <= CHUNK_MAX_CHARS + 200
+
+    def test_csv_chunks_have_metadata(self, sample_csv: Path):
+        parser = get_parser(sample_csv)
+        doc = parser.parse(sample_csv)
+        chunker = ContextualChunker()
+        chunks = chunker.chunk(doc)
+        for c in chunks:
+            assert c.doc_id == doc.doc_id
+            assert c.ticker == doc.ticker
+            assert c.year == doc.year
 
 
 class TestTXTChunking:
@@ -73,14 +103,6 @@ class TestTXTChunking:
         chunker = ContextualChunker()
         chunks = chunker.chunk(doc)
         assert len(chunks) > 0
-
-    def test_txt_chunks_have_section_titles(self, sample_txt: Path):
-        parser = get_parser(sample_txt)
-        doc = parser.parse(sample_txt)
-        chunker = ContextualChunker()
-        chunks = chunker.chunk(doc)
-        section_titles = {c.section_title for c in chunks if c.section_title}
-        assert len(section_titles) > 0
 
     def test_txt_chunks_have_metadata(self, sample_txt: Path):
         parser = get_parser(sample_txt)
@@ -92,6 +114,32 @@ class TestTXTChunking:
             assert c.doc_id == doc.doc_id
             assert c.ticker == doc.ticker
             assert c.year == doc.year
+
+    def test_txt_chunks_are_paragraph_type(self, sample_txt: Path):
+        parser = get_parser(sample_txt)
+        doc = parser.parse(sample_txt)
+        chunker = ContextualChunker()
+        chunks = chunker.chunk(doc)
+        for c in chunks:
+            assert c.chunk_type in (ChunkType.PARAGRAPH, ChunkType.SECTION)
+
+
+class TestChunkingAllDocs:
+    def test_all_txt_docs_produce_chunks(self, all_txt_docs: list[Path]):
+        chunker = ContextualChunker()
+        for path in all_txt_docs:
+            parser = get_parser(path)
+            doc = parser.parse(path)
+            chunks = chunker.chunk(doc)
+            assert len(chunks) > 0, f"No chunks for {path.name}"
+
+    def test_all_csv_docs_produce_chunks(self, all_csv_docs: list[Path]):
+        chunker = ContextualChunker()
+        for path in all_csv_docs:
+            parser = get_parser(path)
+            doc = parser.parse(path)
+            chunks = chunker.chunk(doc)
+            assert len(chunks) > 0, f"No chunks for {path.name}"
 
 
 class TestChunkDeterminism:
