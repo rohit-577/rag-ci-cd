@@ -11,3 +11,7 @@ wheels/
 sec-edgar-filings/
 # index is rebuildable from docs/
 data/
+
+# CI logs
+ci_logs/
+ci_logs.zip

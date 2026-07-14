@@ -1,9 +1,0 @@
-﻿2026-07-14T10:47:38.8049163Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
-2026-07-14T10:47:38.8051448Z Post job cleanup.
-2026-07-14T10:47:38.9229022Z Pruning cache...
-2026-07-14T10:47:38.9244972Z (node:2543) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
-2026-07-14T10:47:38.9246987Z (Use `node --trace-deprecation ...` to show where the warning was created)
-2026-07-14T10:47:39.3271800Z Saving cache path: /home/runner/work/_temp/setup-uv-cache
-2026-07-14T10:47:39.3405085Z [command]/usr/bin/tar --posix -cf cache.tzst --exclude cache.tzst -P -C /home/runner/work/rag-ci-cd/rag-ci-cd --files-from manifest.txt --use-compress-program zstdmt
-2026-07-14T10:47:39.5246781Z ##[warning]Failed to save: <h2>Our services aren't available right now</h2><p>We're working to restore all services as soon as possible. Please check back soon.</p>0yxNWagAAAABjIGklQkC7SqgREN6GO3LLTEFYMzExMDAwMTE1MDQ5AEVkZ2U=
-2026-07-14T10:47:39.5253170Z cache saved with the key: setup-uv-1-x86_64-unknown-linux-gnu-0.11.28-13c5a8ad5bc98b0d5d1f42070bd18e6d8b27fea7271e4e56ced461351355015f

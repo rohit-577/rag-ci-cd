@@ -1,9 +1,0 @@
-﻿2026-07-14T10:45:55.6109915Z ##[group]Run uvx ruff format --check .
-2026-07-14T10:45:55.6110424Z [36;1muvx ruff format --check .[0m
-2026-07-14T10:45:55.6141376Z shell: /usr/bin/bash -e {0}
-2026-07-14T10:45:55.6141615Z env:
-2026-07-14T10:45:55.6141794Z   REGISTRY: ghcr.io
-2026-07-14T10:45:55.6142014Z   IMAGE_NAME: rohit-577/rag-ci-cd
-2026-07-14T10:45:55.6142312Z   UV_CACHE_DIR: /home/runner/work/_temp/setup-uv-cache
-2026-07-14T10:45:55.6142611Z ##[endgroup]
-2026-07-14T10:45:55.6563081Z 50 files already formatted
