@@ -4,7 +4,6 @@ import json
 import math
 from collections import Counter
 from pathlib import Path
-from typing import Any
 
 import numpy as np
 
@@ -94,9 +93,7 @@ class IndexStore:
         for token in query_tokens:
             if token not in self._vocab:
                 continue
-            idf = math.log(
-                (self._total_docs - self._doc_freq[token] + 0.5) / (self._doc_freq[token] + 0.5) + 1.0
-            )
+            idf = math.log((self._total_docs - self._doc_freq[token] + 0.5) / (self._doc_freq[token] + 0.5) + 1.0)
             tf = self._corpus_tokens[doc_idx].count(token)
             score += idf * (tf * (k1 + 1)) / (tf + k1 * (1 - b + b * doc_len / self._avg_doc_len))
         return score
@@ -137,6 +134,7 @@ class IndexStore:
             return False
         data = json.loads(index_file.read_text())
         from rag_ci_cd.models.document import Chunk as ChunkModel
+
         self._chunks = [ChunkModel(**c) for c in data["chunks"]]
         self._embeddings = np.array(data["embeddings"]) if data["embeddings"] else None
         self._doc_freq = Counter(data["doc_freq"])

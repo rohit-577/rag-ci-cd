@@ -19,9 +19,7 @@ class CSVParser(BaseParser):
         doc.metadata["headers"] = list(rows[0].keys()) if rows else []
         doc.metadata["rows"] = rows
 
-        raw_text = "\n".join(
-            ",".join(row.values()) for row in rows
-        )
+        raw_text = "\n".join(",".join(row.values()) for row in rows)
         doc.content_hash = hashlib.sha256(raw_text.encode()).hexdigest()
         return doc
 

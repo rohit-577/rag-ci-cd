@@ -61,11 +61,7 @@ class TestGoldSet:
         answer_text = response.answer
         answer_normalized = answer_text.replace(",", "").lower()
         expected = example["expected_terms"]
-        found = [
-            term
-            for term in expected
-            if term.lower() in answer_normalized or term.lower() in answer_text.lower()
-        ]
+        found = [term for term in expected if term.lower() in answer_normalized or term.lower() in answer_text.lower()]
 
         assert len(found) > 0, (
             f"Question: {example['question']}\n"

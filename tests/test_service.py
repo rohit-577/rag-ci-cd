@@ -36,9 +36,8 @@ def test_store(tmp_path) -> IndexStore:
 @pytest.mark.integration
 class TestServiceHealth:
     def test_health_endpoint(self, test_store: IndexStore):
-        from rag_ci_cd.service.app import app
-
         import rag_ci_cd.service.app as svc_app
+        from rag_ci_cd.service.app import app
 
         svc_app.store = test_store
 
@@ -53,9 +52,8 @@ class TestServiceHealth:
 @pytest.mark.integration
 class TestServiceQuery:
     def test_query_endpoint(self, test_store: IndexStore):
-        from rag_ci_cd.service.app import app
-
         import rag_ci_cd.service.app as svc_app
+        from rag_ci_cd.service.app import app
 
         svc_app.store = test_store
 
@@ -74,9 +72,8 @@ class TestServiceQuery:
         assert len(data["citations"]) > 0
 
     def test_query_no_index(self):
-        from rag_ci_cd.service.app import app
-
         import rag_ci_cd.service.app as svc_app
+        from rag_ci_cd.service.app import app
 
         svc_app.store = None
 
@@ -85,9 +82,8 @@ class TestServiceQuery:
         assert response.status_code == 503
 
     def test_query_response_structure(self, test_store: IndexStore):
-        from rag_ci_cd.service.app import app
-
         import rag_ci_cd.service.app as svc_app
+        from rag_ci_cd.service.app import app
 
         svc_app.store = test_store
 
@@ -110,9 +106,8 @@ class TestServiceQuery:
 @pytest.mark.integration
 class TestServiceDocuments:
     def test_documents_endpoint(self, test_store: IndexStore):
-        from rag_ci_cd.service.app import app
-
         import rag_ci_cd.service.app as svc_app
+        from rag_ci_cd.service.app import app
 
         svc_app.store = test_store
 
@@ -127,9 +122,8 @@ class TestServiceDocuments:
             assert "chunks" in doc
 
     def test_documents_have_correct_fields(self, test_store: IndexStore):
-        from rag_ci_cd.service.app import app
-
         import rag_ci_cd.service.app as svc_app
+        from rag_ci_cd.service.app import app
 
         svc_app.store = test_store
 

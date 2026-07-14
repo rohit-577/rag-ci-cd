@@ -1,6 +1,4 @@
-from pydantic import BaseModel, Field
-
-from rag_ci_cd.models.document import ChunkType, DocType
+from pydantic import BaseModel
 
 
 class RetrievedChunk(BaseModel):

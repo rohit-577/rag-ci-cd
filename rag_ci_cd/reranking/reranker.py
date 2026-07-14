@@ -1,13 +1,11 @@
 from __future__ import annotations
 
 import time
-from typing import Any
 
-import numpy as np
 import torch
 from sentence_transformers import CrossEncoder
 
-from rag_ci_cd.models.retrieval import RetrievedChunk, RetrievalResult
+from rag_ci_cd.models.retrieval import RetrievalResult, RetrievedChunk
 
 CROSS_ENCODER_MODEL = "cross-encoder/ms-marco-MiniLM-L-6-v2"
 

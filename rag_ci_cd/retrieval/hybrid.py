@@ -5,12 +5,12 @@ import time
 
 from rag_ci_cd.config import RRF_K
 from rag_ci_cd.indexing.store import IndexStore
-from rag_ci_cd.models.retrieval import RetrievedChunk, RetrievalResult
+from rag_ci_cd.models.retrieval import RetrievalResult, RetrievedChunk
 from rag_ci_cd.retrieval.dedup import deduplicate
 from rag_ci_cd.retrieval.dense import dense_retrieve
 from rag_ci_cd.retrieval.lexical import lexical_retrieve
 
-_DOC_ID_PATTERN = re.compile(r'\bDOC-(\d+)\b')
+_DOC_ID_PATTERN = re.compile(r"\bDOC-(\d+)\b")
 
 KNOWN_TICKERS = {"AAPL", "AMD", "AMZN", "GOOGL", "INTC", "META", "MSFT", "NFLX", "NVDA", "TSLA"}
 _MAX_YEARS = 12  # 2015-2026
@@ -80,22 +80,24 @@ def _get_all_chunks_for_doc(store: IndexStore, doc_id: str, top_k: int) -> list[
     chunks_list = []
     for idx, chunk in enumerate(store.chunks):
         if chunk.doc_id == doc_id:
-            chunks_list.append(RetrievedChunk(
-                chunk_id=chunk.chunk_id,
-                doc_id=chunk.doc_id,
-                filename=chunk.filename,
-                content=chunk.content,
-                page_number=chunk.page_number,
-                section_title=chunk.section_title,
-                table_headers=chunk.table_headers,
-                ticker=chunk.ticker,
-                year=chunk.year,
-                doc_type=chunk.doc_type.value if chunk.doc_type else None,
-                chunk_type=chunk.chunk_type.value if chunk.chunk_type else None,
-                dense_score=1.0,
-                lexical_score=1.0,
-                hybrid_score=1.0,
-            ))
+            chunks_list.append(
+                RetrievedChunk(
+                    chunk_id=chunk.chunk_id,
+                    doc_id=chunk.doc_id,
+                    filename=chunk.filename,
+                    content=chunk.content,
+                    page_number=chunk.page_number,
+                    section_title=chunk.section_title,
+                    table_headers=chunk.table_headers,
+                    ticker=chunk.ticker,
+                    year=chunk.year,
+                    doc_type=chunk.doc_type.value if chunk.doc_type else None,
+                    chunk_type=chunk.chunk_type.value if chunk.chunk_type else None,
+                    dense_score=1.0,
+                    lexical_score=1.0,
+                    hybrid_score=1.0,
+                )
+            )
     return chunks_list[:top_k]
 
 

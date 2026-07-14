@@ -18,12 +18,8 @@ class Answer(BaseModel):
     answer: str
     citations: list[Citation] = Field(default_factory=list)
     confidence: float = Field(ge=0.0, le=1.0, description="Confidence score")
-    sufficiency: str = Field(
-        description="One of: sufficient, partial, insufficient"
-    )
-    reasoning: str | None = Field(
-        default=None, description="Brief reasoning about how the answer was derived"
-    )
+    sufficiency: str = Field(description="One of: sufficient, partial, insufficient")
+    reasoning: str | None = Field(default=None, description="Brief reasoning about how the answer was derived")
 
 
 class AnswerRequest(BaseModel):

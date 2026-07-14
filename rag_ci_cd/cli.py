@@ -6,7 +6,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from rag_ci_cd.config import DOCS_DIR, EVAL_DIR, INDEX_DIR
+from rag_ci_cd.config import EVAL_DIR, INDEX_DIR
 from rag_ci_cd.service.app import build_index
 
 
@@ -37,6 +37,7 @@ def cmd_eval():
 def cmd_serve():
     """Start the FastAPI server."""
     import uvicorn
+
     uvicorn.run("rag_ci_cd.service.app:app", host="0.0.0.0", port=6565, reload=False)
 
 

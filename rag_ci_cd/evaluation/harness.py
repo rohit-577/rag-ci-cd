@@ -65,9 +65,7 @@ def run_evaluation(
         request = AnswerRequest(query=example.query, top_k=top_k, rerank=True)
         response = answer_query(store, request)
 
-        retrieval_metrics = compute_retrieval_metrics(
-            [], example.relevant_chunk_ids
-        )
+        retrieval_metrics = compute_retrieval_metrics([], example.relevant_chunk_ids)
         ans = Answer(
             query=response.query,
             answer=response.answer,
@@ -83,21 +81,23 @@ def run_evaluation(
             if term.lower() in response.answer.lower():
                 term_hits += 1
 
-        results.append({
-            "query": example.query,
-            "description": example.description,
-            "answer": response.answer,
-            "route": response.route,
-            "confidence": response.confidence,
-            "sufficiency": response.sufficiency,
-            "citation_count": len(response.citations),
-            "retrieval_time_ms": response.retrieval_time_ms,
-            "generation_time_ms": response.generation_time_ms,
-            "expected_terms_found": term_hits,
-            "expected_terms_total": len(example.expected_answer_terms),
-            "answer_metrics": answer_metrics,
-            "retrieval_metrics": retrieval_metrics,
-        })
+        results.append(
+            {
+                "query": example.query,
+                "description": example.description,
+                "answer": response.answer,
+                "route": response.route,
+                "confidence": response.confidence,
+                "sufficiency": response.sufficiency,
+                "citation_count": len(response.citations),
+                "retrieval_time_ms": response.retrieval_time_ms,
+                "generation_time_ms": response.generation_time_ms,
+                "expected_terms_found": term_hits,
+                "expected_terms_total": len(example.expected_answer_terms),
+                "answer_metrics": answer_metrics,
+                "retrieval_metrics": retrieval_metrics,
+            }
+        )
 
     return results
 

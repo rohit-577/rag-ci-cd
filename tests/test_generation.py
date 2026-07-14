@@ -4,7 +4,7 @@ from rag_ci_cd.generation.generator import (
     answer_to_response,
 )
 from rag_ci_cd.models.answers import Answer, Citation
-from rag_ci_cd.models.retrieval import RetrievedChunk, RetrievalResult
+from rag_ci_cd.models.retrieval import RetrievalResult, RetrievedChunk
 from rag_ci_cd.routing.router import Route
 
 
