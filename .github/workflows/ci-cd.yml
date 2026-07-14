@@ -100,12 +100,11 @@ jobs:
 
       - name: Pull Ollama models
         run: |
-          ollama pull llama3.2:3b &
-          ollama pull qwen2.5:1.5b &
-          wait
+          ollama pull llama3.2:3b
+          ollama pull qwen2.5:1.5b
 
       - name: Build index
-        run: uv run python -m rag_ci_cd.cli index
+        run: uv run python -m rag_ci_cd index
 
       - name: Run all tests including integration
         run: uv run pytest -v --tb=short
@@ -113,7 +112,7 @@ jobs:
   # ---------- Docker Build & Push (main branch only) ----------
   build-and-push:
     name: Build & Push Docker Image
-    needs: test
+    needs: integration
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     runs-on: ubuntu-latest
     permissions:

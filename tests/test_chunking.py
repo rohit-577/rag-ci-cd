@@ -141,6 +141,14 @@ class TestChunkingAllDocs:
             chunks = chunker.chunk(doc)
             assert len(chunks) > 0, f"No chunks for {path.name}"
 
+    def test_all_pdf_docs_produce_chunks(self, all_pdf_docs: list[Path]):
+        chunker = ContextualChunker()
+        for path in all_pdf_docs:
+            parser = get_parser(path)
+            doc = parser.parse(path)
+            chunks = chunker.chunk(doc)
+            assert len(chunks) > 0, f"No chunks for {path.name}"
+
 
 class TestChunkDeterminism:
     def test_chunks_are_deterministic(self, sample_pdf: Path, sample_csv: Path, sample_txt: Path):

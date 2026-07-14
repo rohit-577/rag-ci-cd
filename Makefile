@@ -18,13 +18,13 @@ test-all:
 	pytest -v --tb=short
 
 index:
-	python -m rag_ci_cd.cli index
+	python -m rag_ci_cd index
 
 serve:
-	python -m rag_ci_cd.cli serve
+	python -m rag_ci_cd serve
 
 eval:
-	python -m rag_ci_cd.cli eval
+	python -m rag_ci_cd eval
 
 docker-build:
 	docker build -t rag-ci-cd .

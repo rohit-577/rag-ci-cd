@@ -2,9 +2,6 @@ from __future__ import annotations
 
 import json
 import sys
-from pathlib import Path
-
-sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from rag_ci_cd.config import EVAL_DIR, INDEX_DIR
 from rag_ci_cd.service.app import build_index
@@ -41,9 +38,9 @@ def cmd_serve():
     uvicorn.run("rag_ci_cd.service.app:app", host="0.0.0.0", port=6565, reload=False)
 
 
-if __name__ == "__main__":
+def main():
     if len(sys.argv) < 2:
-        print("Usage: python -m rag_ci_cd.cli [index|eval|serve]")
+        print("Usage: python -m rag_ci_cd [index|eval|serve]")
         sys.exit(1)
 
     command = sys.argv[1]
@@ -55,5 +52,9 @@ if __name__ == "__main__":
         cmd_serve()
     else:
         print(f"Unknown command: {command}")
-        print("Usage: python -m rag_ci_cd.cli [index|eval|serve]")
+        print("Usage: python -m rag_ci_cd [index|eval|serve]")
         sys.exit(1)
+
+
+if __name__ == "__main__":
+    main()
