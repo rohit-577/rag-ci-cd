@@ -1,0 +1,12 @@
+﻿2026-07-14T10:45:35.8289059Z ##[group]Run uv python install 3.12
+2026-07-14T10:45:35.8289425Z [36;1muv python install 3.12[0m
+2026-07-14T10:45:35.9406507Z shell: /usr/bin/bash -e {0}
+2026-07-14T10:45:35.9406871Z env:
+2026-07-14T10:45:35.9407136Z   REGISTRY: ghcr.io
+2026-07-14T10:45:35.9407423Z   IMAGE_NAME: rohit-577/rag-ci-cd
+2026-07-14T10:45:35.9407808Z   UV_CACHE_DIR: /home/runner/work/_temp/setup-uv-cache
+2026-07-14T10:45:35.9408183Z ##[endgroup]
+2026-07-14T10:45:36.1019078Z Downloading cpython-3.12.13-linux-x86_64-gnu (download) (32.6MiB)
+2026-07-14T10:45:37.0667771Z  Downloaded cpython-3.12.13-linux-x86_64-gnu (download)
+2026-07-14T10:45:37.0761955Z Installed Python 3.12.13 in 1.10s
+2026-07-14T10:45:37.0762772Z  + cpython-3.12.13-linux-x86_64-gnu (python3.12)

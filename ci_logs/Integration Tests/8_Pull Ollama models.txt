@@ -1,0 +1,11 @@
+﻿2026-07-14T10:49:43.0202887Z ##[group]Run ollama pull llama3.2:3b
+2026-07-14T10:49:43.0203164Z [36;1mollama pull llama3.2:3b[0m
+2026-07-14T10:49:43.0203371Z [36;1mollama pull qwen2.5:1.5b[0m
+2026-07-14T10:49:43.0244808Z shell: /usr/bin/bash -e {0}
+2026-07-14T10:49:43.0245025Z env:
+2026-07-14T10:49:43.0245187Z   REGISTRY: ghcr.io
+2026-07-14T10:49:43.0245381Z   IMAGE_NAME: rohit-577/rag-ci-cd
+2026-07-14T10:49:43.0245632Z   UV_CACHE_DIR: /home/runner/work/_temp/setup-uv-cache
+2026-07-14T10:49:43.0245881Z ##[endgroup]
+2026-07-14T10:49:43.0422159Z Error: could not connect to ollama server, run 'ollama serve' to start it
+2026-07-14T10:49:43.0439456Z ##[error]Process completed with exit code 1.

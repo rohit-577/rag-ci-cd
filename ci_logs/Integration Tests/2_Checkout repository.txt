@@ -1,0 +1,76 @@
+﻿2026-07-14T10:47:47.3004469Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+2026-07-14T10:47:47.3012167Z ##[group]Run actions/checkout@v4
+2026-07-14T10:47:47.3012769Z with:
+2026-07-14T10:47:47.3013135Z   repository: rohit-577/rag-ci-cd
+2026-07-14T10:47:47.3016666Z   token: ***
+2026-07-14T10:47:47.3017045Z   ssh-strict: true
+2026-07-14T10:47:47.3017413Z   ssh-user: git
+2026-07-14T10:47:47.3017781Z   persist-credentials: true
+2026-07-14T10:47:47.3018182Z   clean: true
+2026-07-14T10:47:47.3018671Z   sparse-checkout-cone-mode: true
+2026-07-14T10:47:47.3019114Z   fetch-depth: 1
+2026-07-14T10:47:47.3019472Z   fetch-tags: false
+2026-07-14T10:47:47.3019855Z   show-progress: true
+2026-07-14T10:47:47.3020242Z   lfs: false
+2026-07-14T10:47:47.3020623Z   submodules: false
+2026-07-14T10:47:47.3021044Z   set-safe-directory: true
+2026-07-14T10:47:47.3021653Z env:
+2026-07-14T10:47:47.3021993Z   REGISTRY: ghcr.io
+2026-07-14T10:47:47.3022373Z   IMAGE_NAME: rohit-577/rag-ci-cd
+2026-07-14T10:47:47.3022801Z ##[endgroup]
+2026-07-14T10:47:47.3776517Z Syncing repository: rohit-577/rag-ci-cd
+2026-07-14T10:47:47.3778037Z ##[group]Getting Git version info
+2026-07-14T10:47:47.3778928Z Working directory is '/home/runner/work/rag-ci-cd/rag-ci-cd'
+2026-07-14T10:47:47.3779869Z [command]/usr/bin/git version
+2026-07-14T10:47:47.4643208Z git version 2.54.0
+2026-07-14T10:47:47.4689502Z ##[endgroup]
+2026-07-14T10:47:47.4701413Z Temporarily overriding HOME='/home/runner/work/_temp/2c89a830-36ea-487c-ace9-c081553b6d48' before making global git config changes
+2026-07-14T10:47:47.4705782Z Adding repository directory to the temporary git global config as a safe directory
+2026-07-14T10:47:47.4707271Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/rag-ci-cd/rag-ci-cd
+2026-07-14T10:47:47.4735033Z Deleting the contents of '/home/runner/work/rag-ci-cd/rag-ci-cd'
+2026-07-14T10:47:47.4737997Z ##[group]Initializing the repository
+2026-07-14T10:47:47.4741607Z [command]/usr/bin/git init /home/runner/work/rag-ci-cd/rag-ci-cd
+2026-07-14T10:47:47.4797940Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-07-14T10:47:47.4799577Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-07-14T10:47:47.4801240Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-07-14T10:47:47.4802113Z hint: call:
+2026-07-14T10:47:47.4802678Z hint:
+2026-07-14T10:47:47.4803346Z hint: 	git config --global init.defaultBranch <name>
+2026-07-14T10:47:47.4804088Z hint:
+2026-07-14T10:47:47.4804879Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-07-14T10:47:47.4806196Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-07-14T10:47:47.4807220Z hint:
+2026-07-14T10:47:47.4807783Z hint: 	git branch -m <name>
+2026-07-14T10:47:47.4808445Z hint:
+2026-07-14T10:47:47.4809466Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-07-14T10:47:47.4810874Z Initialized empty Git repository in /home/runner/work/rag-ci-cd/rag-ci-cd/.git/
+2026-07-14T10:47:47.4812401Z [command]/usr/bin/git remote add origin https://github.com/rohit-577/rag-ci-cd
+2026-07-14T10:47:47.4833237Z ##[endgroup]
+2026-07-14T10:47:47.4833906Z ##[group]Disabling automatic garbage collection
+2026-07-14T10:47:47.4836147Z [command]/usr/bin/git config --local gc.auto 0
+2026-07-14T10:47:47.4864426Z ##[endgroup]
+2026-07-14T10:47:47.4865346Z ##[group]Setting up auth
+2026-07-14T10:47:47.4866535Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-07-14T10:47:47.4889338Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-07-14T10:47:47.7126744Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-07-14T10:47:47.7174558Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-07-14T10:47:47.7355264Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-07-14T10:47:47.7382014Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-07-14T10:47:47.7599761Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-07-14T10:47:47.7606926Z ##[endgroup]
+2026-07-14T10:47:47.7608003Z ##[group]Fetching the repository
+2026-07-14T10:47:47.7615731Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +3a38c56688b1f5dde9ec657c4a073f0969bc0e4c:refs/remotes/origin/main
+2026-07-14T10:47:48.4296183Z From https://github.com/rohit-577/rag-ci-cd
+2026-07-14T10:47:48.4297655Z  * [new ref]         3a38c56688b1f5dde9ec657c4a073f0969bc0e4c -> origin/main
+2026-07-14T10:47:48.4315141Z ##[endgroup]
+2026-07-14T10:47:48.4316428Z ##[group]Determining the checkout info
+2026-07-14T10:47:48.4317944Z ##[endgroup]
+2026-07-14T10:47:48.4322595Z [command]/usr/bin/git sparse-checkout disable
+2026-07-14T10:47:48.4354674Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-07-14T10:47:48.4377299Z ##[group]Checking out the ref
+2026-07-14T10:47:48.4380768Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+2026-07-14T10:47:48.4460003Z Switched to a new branch 'main'
+2026-07-14T10:47:48.4462194Z branch 'main' set up to track 'origin/main'.
+2026-07-14T10:47:48.4467985Z ##[endgroup]
+2026-07-14T10:47:48.4498433Z [command]/usr/bin/git log -1 --format=%H
+2026-07-14T10:47:48.4517040Z 3a38c56688b1f5dde9ec657c4a073f0969bc0e4c

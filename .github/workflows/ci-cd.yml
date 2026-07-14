@@ -98,8 +98,10 @@ jobs:
         run: |
           curl -fsSL https://ollama.com/install.sh | sh
 
-      - name: Pull Ollama models
+      - name: Start Ollama and pull models
         run: |
+          ollama serve &
+          sleep 5
           ollama pull llama3.2:3b
           ollama pull qwen2.5:1.5b
 
