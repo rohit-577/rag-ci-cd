@@ -1,11 +1,9 @@
 from __future__ import annotations
 
 import json
-import time
 from urllib.error import URLError
 from urllib.request import Request, urlopen
 
-from rag_ci_cd.config import MAIN_MODEL
 from rag_ci_cd.models.answers import Answer, AnswerResponse, Citation
 from rag_ci_cd.models.retrieval import RetrievalResult
 from rag_ci_cd.routing.router import Route, get_model_for_route
@@ -60,6 +58,7 @@ Answer format:
 
 _CORPUS_STATS: dict | None = None
 
+
 def _get_corpus_summary(store: object | None = None) -> str:
     global _CORPUS_STATS
     if _CORPUS_STATS is not None:
@@ -72,6 +71,7 @@ def _get_corpus_summary(store: object | None = None) -> str:
         ticker_years: dict[str, set] = {}
         ticker_stability: dict[str, dict[int, list[float]]] = {}
         import re
+
         for c in chunks:
             if c.ticker not in unique_docs:
                 unique_docs[c.ticker] = set()
@@ -82,13 +82,19 @@ def _get_corpus_summary(store: object | None = None) -> str:
                 ticker_years[c.ticker].add(c.year)
                 if c.year not in ticker_stability[c.ticker]:
                     ticker_stability[c.ticker][c.year] = []
-                vals = re.findall(r'Stability metric:\s*(-?\d+\.\d+)', c.content)
+                vals = re.findall(r"Stability metric:\s*(-?\d+\.\d+)", c.content)
                 for v in vals:
                     ticker_stability[c.ticker][c.year].append(float(v))
         ticker_counts = {t: len(ds) for t, ds in unique_docs.items()}
         total_docs = len(set(c.doc_id for c in chunks))
         most_ticker = max(ticker_counts, key=ticker_counts.get)
-        stats = {"total_docs": total_docs, "most_docs_ticker": most_ticker, "docs_per_ticker": ticker_counts, "ticker_years": ticker_years, "ticker_stability": ticker_stability}
+        stats = {
+            "total_docs": total_docs,
+            "most_docs_ticker": most_ticker,
+            "docs_per_ticker": ticker_counts,
+            "ticker_years": ticker_years,
+            "ticker_stability": ticker_stability,
+        }
         _CORPUS_STATS = stats
     else:
         return ""
@@ -155,27 +161,31 @@ def _extract_citations(answer_text: str, retrieval_result: RetrievalResult) -> l
                 key = excerpt[:80]
                 if key not in seen_excerpts:
                     seen_excerpts.add(key)
-                    citations.append(Citation(
-                        chunk_id=chunk.chunk_id,
-                        filename=chunk.filename,
-                        page_number=chunk.page_number,
-                        section_title=chunk.section_title,
-                        ticker=chunk.ticker,
-                        year=chunk.year,
-                        excerpt=excerpt,
-                    ))
+                    citations.append(
+                        Citation(
+                            chunk_id=chunk.chunk_id,
+                            filename=chunk.filename,
+                            page_number=chunk.page_number,
+                            section_title=chunk.section_title,
+                            ticker=chunk.ticker,
+                            year=chunk.year,
+                            excerpt=excerpt,
+                        )
+                    )
                     break
     if not citations and retrieval_result.chunks:
         top = retrieval_result.chunks[0]
-        citations.append(Citation(
-            chunk_id=top.chunk_id,
-            filename=top.filename,
-            page_number=top.page_number,
-            section_title=top.section_title,
-            ticker=top.ticker,
-            year=top.year,
-            excerpt=top.content[:200],
-        ))
+        citations.append(
+            Citation(
+                chunk_id=top.chunk_id,
+                filename=top.filename,
+                page_number=top.page_number,
+                section_title=top.section_title,
+                ticker=top.ticker,
+                year=top.year,
+                excerpt=top.content[:200],
+            )
+        )
     return citations
 
 
@@ -199,8 +209,17 @@ def generate_answer(
     query = query.replace("chaos archetype", "style tag")
     query = query.replace("Chaos Archetype", "Style")
 
-    _corpus_query_patterns = ["total doc", "most doc", "corpus", "all ticker", "all the ticker", "unique ticker",
-                              "how many total", "list all", "across the entire"]
+    _corpus_query_patterns = [
+        "total doc",
+        "most doc",
+        "corpus",
+        "all ticker",
+        "all the ticker",
+        "unique ticker",
+        "how many total",
+        "list all",
+        "across the entire",
+    ]
     if any(p in query.lower() for p in _corpus_query_patterns):
         summary = _get_corpus_summary(store)
         if summary:
@@ -213,9 +232,7 @@ Question: {query}
 
 Answer the question using ONLY the context above. Include citations for every factual claim."""
 
-    start = time.time()
     answer_text = _call_ollama(model_name, prompt, system=_SYSTEM_PROMPT)
-    gen_time = (time.time() - start) * 1000
 
     confidence, sufficiency = _parse_confidence_sufficiency(answer_text)
     citations = _extract_citations(answer_text, retrieval_result)

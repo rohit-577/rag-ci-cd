@@ -1,0 +1,14 @@
+.git
+.github
+.venv
+.ruff_cache
+.pytest_cache
+__pycache__
+*.pyc
+data/
+eval_data/
+docs/
+*.md
+.gitignore
+.python-version
+Makefile

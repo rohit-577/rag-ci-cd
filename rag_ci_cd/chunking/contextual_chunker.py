@@ -60,17 +60,19 @@ class ContextualChunker(BaseChunker):
         for page_num, page_text in enumerate(pages, start=1):
             sections = _split_into_sections(page_text)
             if not sections:
-                chunks.append(Chunk(
-                    chunk_id=Chunk.create_id(doc.doc_id, ChunkType.PAGE, page_num, chunk_index),
-                    doc_id=doc.doc_id,
-                    filename=doc.filename,
-                    doc_type=doc.doc_type,
-                    chunk_type=ChunkType.PAGE,
-                    content=page_text,
-                    page_number=page_num,
-                    ticker=doc.ticker,
-                    year=doc.year,
-                ))
+                chunks.append(
+                    Chunk(
+                        chunk_id=Chunk.create_id(doc.doc_id, ChunkType.PAGE, page_num, chunk_index),
+                        doc_id=doc.doc_id,
+                        filename=doc.filename,
+                        doc_type=doc.doc_type,
+                        chunk_type=ChunkType.PAGE,
+                        content=page_text,
+                        page_number=page_num,
+                        ticker=doc.ticker,
+                        year=doc.year,
+                    )
+                )
                 chunk_index += 1
             else:
                 for content, section_title in sections:
@@ -78,33 +80,37 @@ class ContextualChunker(BaseChunker):
                         sub_chunks = self._split_long(content, CHUNK_MAX_CHARS)
                         for sub in sub_chunks:
                             ctype = ChunkType.PARAGRAPH
-                            chunks.append(Chunk(
+                            chunks.append(
+                                Chunk(
+                                    chunk_id=Chunk.create_id(doc.doc_id, ctype, page_num, chunk_index),
+                                    doc_id=doc.doc_id,
+                                    filename=doc.filename,
+                                    doc_type=doc.doc_type,
+                                    chunk_type=ctype,
+                                    content=sub,
+                                    page_number=page_num,
+                                    section_title=section_title,
+                                    ticker=doc.ticker,
+                                    year=doc.year,
+                                )
+                            )
+                            chunk_index += 1
+                    else:
+                        ctype = ChunkType.PARAGRAPH
+                        chunks.append(
+                            Chunk(
                                 chunk_id=Chunk.create_id(doc.doc_id, ctype, page_num, chunk_index),
                                 doc_id=doc.doc_id,
                                 filename=doc.filename,
                                 doc_type=doc.doc_type,
                                 chunk_type=ctype,
-                                content=sub,
+                                content=content,
                                 page_number=page_num,
                                 section_title=section_title,
                                 ticker=doc.ticker,
                                 year=doc.year,
-                            ))
-                            chunk_index += 1
-                    else:
-                        ctype = ChunkType.PARAGRAPH
-                        chunks.append(Chunk(
-                            chunk_id=Chunk.create_id(doc.doc_id, ctype, page_num, chunk_index),
-                            doc_id=doc.doc_id,
-                            filename=doc.filename,
-                            doc_type=doc.doc_type,
-                            chunk_type=ctype,
-                            content=content,
-                            page_number=page_num,
-                            section_title=section_title,
-                            ticker=doc.ticker,
-                            year=doc.year,
-                        ))
+                            )
+                        )
                         chunk_index += 1
         return chunks
 
@@ -122,10 +128,35 @@ class ContextualChunker(BaseChunker):
                 row_text = " | ".join(str(row.get(h, "")) for h in headers)
                 new_size = group_size + len(row_text) + 1
                 if group_rows and new_size > CHUNK_MAX_CHARS:
-                    group_text = header_text + "\n" + "\n".join(
-                        " | ".join(str(r.get(h, "")) for h in headers) for r in group_rows
+                    group_text = (
+                        header_text
+                        + "\n"
+                        + "\n".join(" | ".join(str(r.get(h, "")) for h in headers) for r in group_rows)
                     )
-                    chunks.append(Chunk(
+                    chunks.append(
+                        Chunk(
+                            chunk_id=Chunk.create_id(doc.doc_id, ChunkType.TABLE, None, chunk_idx),
+                            doc_id=doc.doc_id,
+                            filename=doc.filename,
+                            doc_type=doc.doc_type,
+                            chunk_type=ChunkType.TABLE,
+                            content=group_text,
+                            table_headers=headers,
+                            ticker=doc.ticker,
+                            year=doc.year,
+                        )
+                    )
+                    chunk_idx += 1
+                    group_rows = []
+                    group_size = 0
+                group_rows.append(row)
+                group_size += len(row_text) + 1
+            if group_rows:
+                group_text = (
+                    header_text + "\n" + "\n".join(" | ".join(str(r.get(h, "")) for h in headers) for r in group_rows)
+                )
+                chunks.append(
+                    Chunk(
                         chunk_id=Chunk.create_id(doc.doc_id, ChunkType.TABLE, None, chunk_idx),
                         doc_id=doc.doc_id,
                         filename=doc.filename,
@@ -135,27 +166,8 @@ class ContextualChunker(BaseChunker):
                         table_headers=headers,
                         ticker=doc.ticker,
                         year=doc.year,
-                    ))
-                    chunk_idx += 1
-                    group_rows = []
-                    group_size = 0
-                group_rows.append(row)
-                group_size += len(row_text) + 1
-            if group_rows:
-                group_text = header_text + "\n" + "\n".join(
-                    " | ".join(str(r.get(h, "")) for h in headers) for r in group_rows
+                    )
                 )
-                chunks.append(Chunk(
-                    chunk_id=Chunk.create_id(doc.doc_id, ChunkType.TABLE, None, chunk_idx),
-                    doc_id=doc.doc_id,
-                    filename=doc.filename,
-                    doc_type=doc.doc_type,
-                    chunk_type=ChunkType.TABLE,
-                    content=group_text,
-                    table_headers=headers,
-                    ticker=doc.ticker,
-                    year=doc.year,
-                ))
 
         return chunks
 
@@ -178,30 +190,34 @@ class ContextualChunker(BaseChunker):
                 if len(content) > CHUNK_MAX_CHARS:
                     sub_chunks = self._split_long(content, CHUNK_MAX_CHARS)
                     for sub in sub_chunks:
-                        chunks.append(Chunk(
+                        chunks.append(
+                            Chunk(
+                                chunk_id=Chunk.create_id(doc.doc_id, ChunkType.PARAGRAPH, None, txt_chunk_index),
+                                doc_id=doc.doc_id,
+                                filename=doc.filename,
+                                doc_type=doc.doc_type,
+                                chunk_type=ChunkType.PARAGRAPH,
+                                content=sub,
+                                section_title=blob_title,
+                                ticker=doc.ticker,
+                                year=doc.year,
+                            )
+                        )
+                        txt_chunk_index += 1
+                else:
+                    chunks.append(
+                        Chunk(
                             chunk_id=Chunk.create_id(doc.doc_id, ChunkType.PARAGRAPH, None, txt_chunk_index),
                             doc_id=doc.doc_id,
                             filename=doc.filename,
                             doc_type=doc.doc_type,
                             chunk_type=ChunkType.PARAGRAPH,
-                            content=sub,
+                            content=content,
                             section_title=blob_title,
                             ticker=doc.ticker,
                             year=doc.year,
-                        ))
-                        txt_chunk_index += 1
-                else:
-                    chunks.append(Chunk(
-                        chunk_id=Chunk.create_id(doc.doc_id, ChunkType.PARAGRAPH, None, txt_chunk_index),
-                        doc_id=doc.doc_id,
-                        filename=doc.filename,
-                        doc_type=doc.doc_type,
-                        chunk_type=ChunkType.PARAGRAPH,
-                        content=content,
-                        section_title=blob_title,
-                        ticker=doc.ticker,
-                        year=doc.year,
-                    ))
+                        )
+                    )
                     txt_chunk_index += 1
                 continue
 
@@ -217,30 +233,34 @@ class ContextualChunker(BaseChunker):
             if len(content) > CHUNK_MAX_CHARS:
                 sub_chunks = self._split_long(content, CHUNK_MAX_CHARS)
                 for sub in sub_chunks:
-                    chunks.append(Chunk(
+                    chunks.append(
+                        Chunk(
+                            chunk_id=Chunk.create_id(doc.doc_id, ctype, None, txt_chunk_index),
+                            doc_id=doc.doc_id,
+                            filename=doc.filename,
+                            doc_type=doc.doc_type,
+                            chunk_type=ctype,
+                            content=sub,
+                            section_title=section_title,
+                            ticker=doc.ticker,
+                            year=doc.year,
+                        )
+                    )
+                    txt_chunk_index += 1
+            else:
+                chunks.append(
+                    Chunk(
                         chunk_id=Chunk.create_id(doc.doc_id, ctype, None, txt_chunk_index),
                         doc_id=doc.doc_id,
                         filename=doc.filename,
                         doc_type=doc.doc_type,
                         chunk_type=ctype,
-                        content=sub,
+                        content=content,
                         section_title=section_title,
                         ticker=doc.ticker,
                         year=doc.year,
-                    ))
-                    txt_chunk_index += 1
-            else:
-                chunks.append(Chunk(
-                    chunk_id=Chunk.create_id(doc.doc_id, ctype, None, txt_chunk_index),
-                    doc_id=doc.doc_id,
-                    filename=doc.filename,
-                    doc_type=doc.doc_type,
-                    chunk_type=ctype,
-                    content=content,
-                    section_title=section_title,
-                    ticker=doc.ticker,
-                    year=doc.year,
-                ))
+                    )
+                )
                 txt_chunk_index += 1
 
         return chunks

@@ -18,8 +18,8 @@ def tiny_store(tmp_path_factory) -> IndexStore:
     store = IndexStore(tmp)
     docs_root = Path(__file__).resolve().parent.parent / "docs"
     samples = [
-        docs_root / "DOC-1_INTC_2016_ID556661.csv",
-        docs_root / "DOC-103_TSLA_2019_ID679016.txt",
+        docs_root / "DOC-11_STUDENTS_2024_011.csv",
+        docs_root / "DOC-1_ALBERT_2024_001.txt",
     ]
     emb = EmbeddingModel()
     for sp in samples:
@@ -37,21 +37,21 @@ def tiny_store(tmp_path_factory) -> IndexStore:
 
 class TestReranker:
     def test_reranker_returns_fewer_results(self, tiny_store: IndexStore):
-        result = hybrid_retrieve(tiny_store, "stability metric", top_k=20)
-        assert len(result.chunks) >= 5
+        result = hybrid_retrieve(tiny_store, "student marks", top_k=20)
+        assert len(result.chunks) >= 2
         reranker = Reranker()
-        reranked = reranker.rerank_result(result, top_k=5)
-        assert len(reranked.chunks) <= 5
+        reranked = reranker.rerank_result(result, top_k=3)
+        assert len(reranked.chunks) <= 3
 
     def test_reranker_assigns_scores(self, tiny_store: IndexStore):
-        result = hybrid_retrieve(tiny_store, "auto-scaling cluster", top_k=10)
+        result = hybrid_retrieve(tiny_store, "Einstein physics", top_k=10)
         reranker = Reranker()
         reranked = reranker.rerank(result.query, result.chunks, top_k=10)
         for c in reranked:
             assert c.rerank_score is not None
 
     def test_reranker_maintains_metadata(self, tiny_store: IndexStore):
-        result = hybrid_retrieve(tiny_store, "neural architecture", top_k=10)
+        result = hybrid_retrieve(tiny_store, "Mathematics grade", top_k=10)
         reranker = Reranker()
         reranked = reranker.rerank(result.query, result.chunks, top_k=10)
         for c in reranked:
@@ -65,7 +65,21 @@ class TestReranker:
         assert result == []
 
     def test_reranker_method_indicator(self, tiny_store: IndexStore):
-        result = hybrid_retrieve(tiny_store, "database server", top_k=10)
+        result = hybrid_retrieve(tiny_store, "Alice Johnson", top_k=10)
+        reranker = Reranker()
+        reranked = reranker.rerank_result(result, top_k=3)
+        assert "reranked" in reranked.method
+
+    def test_reranker_increases_retrieval_time(self, tiny_store: IndexStore):
+        result = hybrid_retrieve(tiny_store, "student marks grade", top_k=10)
+        original_time = result.retrieval_time_ms
         reranker = Reranker()
         reranked = reranker.rerank_result(result, top_k=5)
-        assert "reranked" in reranked.method
+        assert reranked.retrieval_time_ms >= original_time
+
+    def test_reranker_rerank_scores_are_ordered(self, tiny_store: IndexStore):
+        result = hybrid_retrieve(tiny_store, "Einstein relativity Nobel", top_k=10)
+        reranker = Reranker()
+        reranked = reranker.rerank(result.query, result.chunks, top_k=10)
+        scores = [c.rerank_score for c in reranked if c.rerank_score is not None]
+        assert scores == sorted(scores, reverse=True)

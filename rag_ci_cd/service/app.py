@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 from contextlib import asynccontextmanager
-from pathlib import Path
 
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
@@ -116,4 +115,5 @@ async def list_documents():
 
 if __name__ == "__main__":
     import uvicorn
+
     uvicorn.run("rag_ci_cd.service.app:app", host="0.0.0.0", port=6565, reload=False)

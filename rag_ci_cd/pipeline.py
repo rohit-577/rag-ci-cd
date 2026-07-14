@@ -2,12 +2,12 @@ from __future__ import annotations
 
 import time
 
+from rag_ci_cd.generation.generator import answer_to_response, generate_answer
 from rag_ci_cd.indexing.store import IndexStore
-from rag_ci_cd.models.answers import Answer, AnswerRequest, AnswerResponse
+from rag_ci_cd.models.answers import AnswerRequest, AnswerResponse
 from rag_ci_cd.reranking.reranker import Reranker
 from rag_ci_cd.retrieval.hybrid import hybrid_retrieve
 from rag_ci_cd.routing.router import Route, classify_query, get_retrieval_depth_for_route
-from rag_ci_cd.generation.generator import generate_answer, answer_to_response
 
 
 def answer_query(

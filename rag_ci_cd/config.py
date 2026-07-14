@@ -17,9 +17,9 @@ FINAL_TOP_K = 15
 RRF_K = 60
 
 # Generation
-MAIN_MODEL = "qwen3:14b"
-BACKUP_MODEL = "llama3.2:3b"
-VISION_MODEL = "qwen2.5vl:7b"
+MAIN_MODEL = "llama3.2:3b"
+BACKUP_MODEL = "qwen2.5:1.5b"
+VISION_MODEL = "llama3.2:3b"
 
 # Chunking
 CHUNK_MAX_CHARS = 1500
