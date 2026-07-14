@@ -1,0 +1,142 @@
+[
+  {
+    "id": "E1",
+    "question": "Who developed the theory of relativity?",
+    "expected_terms": ["Einstein"],
+    "difficulty": "easy",
+    "description": "Single-doc factual extraction from DOC-1 TXT"
+  },
+  {
+    "id": "E2",
+    "question": "What is the capital of India?",
+    "expected_terms": ["New Delhi"],
+    "difficulty": "easy",
+    "description": "Single-doc factual extraction from DOC-2 TXT"
+  },
+  {
+    "id": "E3",
+    "question": "What is the largest animal on Earth?",
+    "expected_terms": ["blue whale"],
+    "difficulty": "easy",
+    "description": "Single-doc factual extraction from DOC-3 TXT"
+  },
+  {
+    "id": "E4",
+    "question": "Which fruit has the highest calories per serving?",
+    "expected_terms": ["Mango", "202"],
+    "difficulty": "easy",
+    "description": "CSV lookup from DOC-12, requires comparing Calories column"
+  },
+  {
+    "id": "E5",
+    "question": "Who scored the highest marks in Mathematics?",
+    "expected_terms": ["Mike Jackson", "Alice Johnson", "97", "95"],
+    "difficulty": "easy",
+    "description": "CSV lookup from DOC-11, filter by Subject=Mathematics, find max Marks"
+  },
+  {
+    "id": "E6",
+    "question": "How far does the Ganges River flow in kilometers?",
+    "expected_terms": ["2525"],
+    "difficulty": "easy",
+    "description": "Numeric extraction from DOC-2 TXT"
+  },
+  {
+    "id": "E7",
+    "question": "What is the national bird of India?",
+    "expected_terms": ["peacock"],
+    "difficulty": "easy",
+    "description": "Single-doc factual from DOC-2 TXT"
+  },
+  {
+    "id": "E8",
+    "question": "How much does a blue whale weigh?",
+    "expected_terms": ["200 tons"],
+    "difficulty": "easy",
+    "description": "Numeric fact from DOC-3 TXT"
+  },
+  {
+    "id": "E9",
+    "question": "Where is Harvard University located?",
+    "expected_terms": ["Cambridge", "Massachusetts"],
+    "difficulty": "easy",
+    "description": "Location fact from DOC-5 TXT"
+  },
+  {
+    "id": "E10",
+    "question": "What was Tokyo originally called?",
+    "expected_terms": ["Edo"],
+    "difficulty": "easy",
+    "description": "Historical fact from DOC-6 TXT"
+  },
+  {
+    "id": "H1",
+    "question": "Compare the weight of a blue whale versus an elephant in kilograms",
+    "expected_terms": ["150000", "6000"],
+    "difficulty": "hard",
+    "description": "Cross-doc comparison: DOC-14 CSV has both animals with weights"
+  },
+  {
+    "id": "H2",
+    "question": "List all students who scored above 90 marks",
+    "expected_terms": ["Alice", "Charlie", "Fiona", "Helen", "Kevin", "Mike"],
+    "difficulty": "hard",
+    "description": "CSV filtering from DOC-11, multiple rows match"
+  },
+  {
+    "id": "H3",
+    "question": "What subjects are taught according to the student data?",
+    "expected_terms": ["Mathematics", "Physics", "Chemistry", "Biology"],
+    "difficulty": "hard",
+    "description": "CSV column unique values from DOC-11"
+  },
+  {
+    "id": "H4",
+    "question": "Which fruits are red in color?",
+    "expected_terms": ["Apple", "Strawberry"],
+    "difficulty": "hard",
+    "description": "CSV filtering from DOC-12, Color=Red"
+  },
+  {
+    "id": "H5",
+    "question": "What is the tallest structure mentioned in the Tokyo document?",
+    "expected_terms": ["Skytree", "634"],
+    "difficulty": "hard",
+    "description": "Extraction + comparison from DOC-6 TXT"
+  },
+  {
+    "id": "H6",
+    "question": "How many US presidents are mentioned as Harvard alumni?",
+    "expected_terms": ["8", "eight", "Obama", "Kennedy", "Roosevelt"],
+    "difficulty": "hard",
+    "description": "Counting from DOC-5 TXT"
+  },
+  {
+    "id": "X1",
+    "question": "How many total documents are in the corpus?",
+    "expected_terms": ["30"],
+    "difficulty": "extreme",
+    "description": "Corpus-level counting, requires indexing all docs"
+  },
+  {
+    "id": "X2",
+    "question": "What file formats are used for the documents?",
+    "expected_terms": ["TXT", "CSV", "PDF"],
+    "difficulty": "extreme",
+    "description": "Corpus metadata question"
+  },
+  {
+    "id": "X3",
+    "question": "Which animal in the data lives the longest?",
+    "expected_terms": ["Turtle", "150"],
+    "difficulty": "extreme",
+    "description": "CSV max operation on Lifespan_years from DOC-14"
+  },
+  {
+    "id": "X4",
+    "question": "What is the fastest animal in the dataset?",
+    "expected_terms": ["Peregrine Falcon", "390"],
+    "difficulty": "extreme",
+    "description": "CSV max operation on Speed_kmh from DOC-14"
+  }
+]
